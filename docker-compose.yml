@@ -1,0 +1,14 @@
+version: "3"
+services:
+  php:
+    container_name: php-sm
+    image: keltuo/php:8-cli
+    volumes:
+      - ./:/var/www/
+    command: bash -c "php /var/www/vendor/phpunit/phpunit/phpunit --configuration /var/www/phpunit.xml"
+  composer:
+    container_name: composer-sm
+    image: composer
+    volumes:
+      - ./:/app
+    command: bash -c "composer install --optimize-autoloader --prefer-dist --no-progress"

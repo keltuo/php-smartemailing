@@ -1,0 +1,47 @@
+stages:
+    - prepare
+    - test
+    - deploy
+
+cache:
+  paths:
+    - vendor
+
+composer:
+  image: composer:1.10.15
+  stage: prepare
+  script:
+    - composer install --optimize-autoloader --prefer-dist --no-progress
+  only:
+    - main
+
+
+test:php8:
+    stage: test
+    image: php:8-cli
+    dependencies:
+        - composer
+    before_script:
+        - apt-get update -yqq
+        - apt-get install -yqq git
+        # Install Xdebug
+        - pecl install xdebug
+        - docker-php-ext-enable xdebug
+    only:
+        - main
+    script:
+        - pwd
+        - php -dxdebug.mode=coverage vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
+    tags:
+        - docker
+
+deploy:
+  stage: deploy
+  image: docker:stable
+  before_script:
+      - apk add --update curl && rm -rf /var/cache/apk/*
+  script:
+      - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=$PACKAGE_VERSION "https://$CI_SERVER_HOST/api/v4/projects/$CI_PROJECT_ID/packages/composer"'
+  only:
+    - main
+
