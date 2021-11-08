@@ -328,9 +328,11 @@ class Contact extends AbstractModel implements ModelInterface
 
     public function setGender(string $gender): Contact
     {
-        AllowedTypeException::check($gender, [
+        AllowedTypeException::check(
+            $gender, [
             'M', 'F', null
-        ]);
+            ]
+        );
 
         $this->gender = $gender;
         return $this;
@@ -367,7 +369,8 @@ class Contact extends AbstractModel implements ModelInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'emailaddress' => $this->getEmailAddress(),
             'name' => $this->getName(),
             'surname' => $this->getSurname(),
@@ -390,9 +393,10 @@ class Contact extends AbstractModel implements ModelInterface
             'contactlists' => $this->getContactListBag(),
             'customfields' => $this->getCustomFieldBag(),
             'purposes' => $this->getPurposeBag()
-        ], fn ($item) => (
+            ], fn ($item) => (
             (!is_object($item) && !empty($item))
             || (is_object($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
-        ));
+            )
+        );
     }
 }

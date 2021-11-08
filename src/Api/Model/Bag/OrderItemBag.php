@@ -21,8 +21,7 @@ class OrderItemBag extends AbstractBag
         Price $price,
         int $quantity,
         string $url
-    ): OrderItem
-    {
+    ): OrderItem {
         $model = new OrderItem($id, $name, $price, $quantity, $url);
         $this->add($model);
         return $model;

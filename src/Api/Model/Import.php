@@ -14,7 +14,7 @@ class Import extends AbstractModel
     protected ?Settings $settings;
 
     /**
-     * @param ContactBag $contactBag
+     * @param ContactBag    $contactBag
      * @param Settings|null $settings
      */
     public function __construct(ContactBag $contactBag, ?Settings $settings = null)
@@ -45,15 +45,19 @@ class Import extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'settings' => "\SmartEmailing\Api\Model\Settings",
         'data' => "\SmartEmailing\Api\Model\ContactBag"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'settings' => $this->getSettings(),
             'data' => $this->getContactBag(),
-        ], fn($item) => !is_null($item));
+            ], fn($item) => !is_null($item)
+        );
     }
 }

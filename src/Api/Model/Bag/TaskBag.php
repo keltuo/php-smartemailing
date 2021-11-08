@@ -19,8 +19,7 @@ class TaskBag extends AbstractBag
         ReplaceBag $replaceBag,
         AttachmentBag $attachmentsBag = null,
         array $templateVariables = array()
-    ): Task
-    {
+    ): Task {
         if (is_null($attachmentsBag)) {
             $attachmentsBag = new AttachmentBag();
         }

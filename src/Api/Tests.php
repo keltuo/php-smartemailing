@@ -8,7 +8,7 @@ use SmartEmailing\Api\Model\Response\LoginResponse;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Tests
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Tests
  * @package SmartEmailing\Api
  */
 class Tests extends AbstractApi

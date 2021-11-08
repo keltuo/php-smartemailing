@@ -10,7 +10,7 @@ use SmartEmailing\Api\Model\Search\SingleEmail as SearchSingleEmail;
 use SmartEmailing\Api\Model\Search\Emails as SearchEmails;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails
  * @package SmartEmailing\Api
  */
 class Emails extends AbstractApi
@@ -55,14 +55,16 @@ class Emails extends AbstractApi
     public function getSingle(int $idEmail, SearchSingleEmail $search = null): Response
     {
         $search = $search ?? new SearchSingleEmail();
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'emails/:id',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'emails/:id',
+                    [
                     'id' => $idEmail
-                ]
-            ),
-            $search->toArray()
-        ));
+                    ]
+                ),
+                $search->toArray()
+            )
+        );
     }
 }

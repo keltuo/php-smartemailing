@@ -9,9 +9,13 @@ use SmartEmailing\Api\Model\Bag\TaskBag;
 
 class CustomEmail extends AbstractModel
 {
-    /** Sender's credentials for this request */
+    /**
+     * Sender's credentials for this request 
+     */
     protected SenderCredentials $senderCredentials;
-    /** Tag used for email grouping */
+    /**
+     * Tag used for email grouping 
+     */
     protected string $tag;
     /**
      * Id of E-mail or E-mail template to send.
@@ -23,17 +27,16 @@ class CustomEmail extends AbstractModel
 
     /**
      * @param SenderCredentials $senderCredentials
-     * @param string $tag
-     * @param int $emailId
-     * @param TaskBag|null $taskBag
+     * @param string            $tag
+     * @param int               $emailId
+     * @param TaskBag|null      $taskBag
      */
     public function __construct(
         SenderCredentials $senderCredentials,
         string $tag,
         int $emailId,
         ?TaskBag $taskBag = null
-    )
-    {
+    ) {
         $this->setSenderCredentials($senderCredentials);
         $this->setTag($tag);
         $this->setEmailId($emailId);
@@ -86,12 +89,14 @@ class CustomEmail extends AbstractModel
     }
 
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'tag' => "string",
         'email_id' => "int",
         'tasks' => "\SmartEmailing\Api\Bag\TaskBag",
         'sender_credentials' => "\SmartEmailing\Api\Model\SenderCredentials"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

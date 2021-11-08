@@ -48,12 +48,12 @@ class Settings extends AbstractModel
     protected ?DoubleOptInSettings $doubleOptInSettings;
 
     /**
-     * @param bool $update
-     * @param bool $addNameDays
-     * @param bool $addGenders
-     * @param bool $addSalutations
-     * @param bool $preserveUnSubscribed
-     * @param bool $skipInvalidEmails
+     * @param bool                     $update
+     * @param bool                     $addNameDays
+     * @param bool                     $addGenders
+     * @param bool                     $addSalutations
+     * @param bool                     $preserveUnSubscribed
+     * @param bool                     $skipInvalidEmails
      * @param DoubleOptInSettings|null $doubleOptInSettings
      */
     public function __construct(
@@ -64,8 +64,7 @@ class Settings extends AbstractModel
         bool $preserveUnSubscribed = true,
         bool $skipInvalidEmails = false,
         ?DoubleOptInSettings $doubleOptInSettings = null
-    )
-    {
+    ) {
         $this->setUpdate($update);
         $this->setAddNameDays($addNameDays);
         $this->setAddGenders($addGenders);
@@ -153,7 +152,8 @@ class Settings extends AbstractModel
     }
 
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'update' => "bool",
         'add_namedays' => "bool",
         'add_genders' => "bool",
@@ -161,10 +161,12 @@ class Settings extends AbstractModel
         'preserve_unsubscribed' => "bool",
         'skip_invalid_emails' => "bool",
         'double_opt_in_settings' => "null|\SmartEmailing\Api\Model\Contact\DoubleOptInSettings"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'update' => $this->isUpdate(),
             'add_namedays' => $this->isAddNameDays(),
             'add_genders' => $this->isAddGenders(),
@@ -172,6 +174,7 @@ class Settings extends AbstractModel
             'preserve_unsubscribed' => $this->isPreserveUnSubscribed(),
             'skip_invalid_emails' => $this->isSkipInvalidEmails(),
             'double_opt_in_settings' => $this->getDoubleOptInSettings()
-        ], fn ($item) => !is_null($item));
+            ], fn ($item) => !is_null($item)
+        );
     }
 }

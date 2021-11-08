@@ -5,7 +5,9 @@ namespace SmartEmailing\Api\Model;
 
 class Newsletter extends AbstractModel
 {
-    /** Id of email to send */
+    /**
+     * Id of email to send 
+     */
     protected int $emailId;
     /**
      * Ids of contactlists to send newsletter to.
@@ -49,21 +51,22 @@ class Newsletter extends AbstractModel
      * Must be a confirmed email.
      */
     protected ?string $replyTo = null;
-    /** GA settings. */
+    /**
+     * GA settings. 
+     */
     protected ?string $utmSource = null;
     protected ?string $utmMedium = null;
     protected ?string $utmCampaign = null;
     protected ?string $utmContent = null;
 
     /**
-     * @param int $emailId
+     * @param int   $emailId
      * @param array $contactListIds
      */
     public function __construct(
         int $emailId,
         array $contactListIds,
-    )
-    {
+    ) {
         $this->setEmailId($emailId);
         $this->setContactListIds($contactListIds);
     }

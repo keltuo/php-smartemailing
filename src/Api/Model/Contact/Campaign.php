@@ -10,7 +10,9 @@ use SmartEmailing\Api\Model\Bag\ReplaceBag;
 
 class Campaign extends AbstractModel
 {
-    /**  ID of E-mail containing {{confirmlink}}. */
+    /**
+     * ID of E-mail containing {{confirmlink}}. 
+     */
     protected int $emailId;
 
     protected SenderCredentials $senderCredentials;
@@ -26,7 +28,7 @@ class Campaign extends AbstractModel
     protected ReplaceBag $replaceBag;
 
     /**
-     * @param int $emailId
+     * @param int               $emailId
      * @param SenderCredentials $senderCredentials
      */
     public function __construct(int $emailId, SenderCredentials $senderCredentials)
@@ -81,7 +83,7 @@ class Campaign extends AbstractModel
         return $this;
     }
 
-     public function getReplaceBag(): ReplaceBag
+    public function getReplaceBag(): ReplaceBag
     {
         return $this->replaceBag;
     }
@@ -92,21 +94,25 @@ class Campaign extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'email_id' => "int",
         'sender_credentials' => "\SmartEmailing\Api\Model\Contact\SenderCredentials",
         'confirmation_thank_you_page_url' => "null|string",
         'valid_to' => "null|string",
         'replace' => "\SmartEmailing\Api\Model\Bag\ReplaceBag"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'email_id' => $this->getEmailId(),
             'sender_credentials' => $this->getSenderCredentials(),
             'confirmation_thank_you_page_url' => $this->getConfirmationThankYouPageUrl(),
             'valid_to' => $this->getValidTo(),
             'replace' => $this->getReplaceBag()
-        ],fn ($item) => !is_null($item));
+            ], fn ($item) => !is_null($item)
+        );
     }
 }

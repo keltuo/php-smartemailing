@@ -10,7 +10,7 @@ use SmartEmailing\Api\Model\Search\Purposes as SearchPurposes;
 use SmartEmailing\Api\Model\Search\PurposeConnections as SearchPurposeConnections;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Processing_purposes
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Processing_purposes
  * @package SmartEmailing\Api
  */
 class ProcessingPurposes extends AbstractApi
@@ -46,11 +46,15 @@ class ProcessingPurposes extends AbstractApi
      */
     public function revoke(int $idPurposeConnection): Response
     {
-        return new Response($this->delete($this->replaceUrlParameters(
-            'purpose-connections/:id',
-            [
-                'id' => $idPurposeConnection
-            ]
-        )));
+        return new Response(
+            $this->delete(
+                $this->replaceUrlParameters(
+                    'purpose-connections/:id',
+                    [
+                    'id' => $idPurposeConnection
+                    ]
+                )
+            )
+        );
     }
 }

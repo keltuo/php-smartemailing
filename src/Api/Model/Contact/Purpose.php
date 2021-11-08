@@ -27,7 +27,7 @@ class Purpose extends AbstractModel implements ModelInterface
     protected ?string $validTo;
 
     /**
-     * @param int $id
+     * @param int         $id
      * @param string|null $validFrom
      * @param string|null $validTo
      */
@@ -84,17 +84,21 @@ class Purpose extends AbstractModel implements ModelInterface
         return $this->validTo;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'id' => "int",
         'valid_from' => "null|string",
         'valid_to' => "null|string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'id' => $this->getId(),
             'valid_from' => $this->getValidFrom(),
             'valid_to' => $this->getValidTo()
-        ], fn ($item) => !is_null($item));
+            ], fn ($item) => !is_null($item)
+        );
     }
 }

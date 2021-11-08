@@ -11,17 +11,23 @@ use SmartEmailing\Util\Helpers;
 class Event extends AbstractModel implements ModelInterface
 {
 
-    /** Email address to trigger the event for, will be created if necessary. */
+    /**
+     * Email address to trigger the event for, will be created if necessary. 
+     */
     protected string $emailAddress;
-    /** Name of the event. All event nodes that listen for this event name will get triggered.*/
+    /**
+     * Name of the event. All event nodes that listen for this event name will get triggered.
+     */
     protected string $name;
-    /** Event payload. This payload is available throughout the entire contact's walkthrough. */
+    /**
+     * Event payload. This payload is available throughout the entire contact's walkthrough. 
+     */
     protected array $payload = [];
 
     /**
      * @param string $emailAddress
      * @param string $name
-     * @param array $payload
+     * @param array  $payload
      */
     public function __construct(string $emailAddress, string $name, array $payload)
     {
@@ -59,7 +65,7 @@ class Event extends AbstractModel implements ModelInterface
         return $this;
     }
 
-     public function getPayload(): array
+    public function getPayload(): array
     {
         return $this->payload;
     }
@@ -70,11 +76,13 @@ class Event extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'emailaddress' => "string",
         'name' => "string",
         'payload' => "array"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

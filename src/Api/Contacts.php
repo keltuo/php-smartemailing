@@ -10,7 +10,7 @@ use SmartEmailing\Api\Model\Search\Contacts as SearchContact;
 use SmartEmailing\Api\Model\Search\SingleContact as SearchSingleContact;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts
  * @package SmartEmailing\Api
  */
 class Contacts extends AbstractApi
@@ -28,14 +28,16 @@ class Contacts extends AbstractApi
      */
     public function forgetContact(int $idContact): Response
     {
-        return new Response($this->delete(
-            $this->replaceUrlParameters(
-                'contacts/forget/:id',
-                [
+        return new Response(
+            $this->delete(
+                $this->replaceUrlParameters(
+                    'contacts/forget/:id',
+                    [
                     'id' => $idContact
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 
     /**
@@ -53,14 +55,16 @@ class Contacts extends AbstractApi
     public function getSingle(int $idContactList, SearchSingleContact $search = null): Response
     {
         $search = $search ?? new SearchSingleContact();
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'contacts/:id',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'contacts/:id',
+                    [
                     'id' => $idContactList
-                ]
-            ),
-            $search->toArray()
-        ));
+                    ]
+                ),
+                $search->toArray()
+            )
+        );
     }
 }

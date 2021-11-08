@@ -10,9 +10,13 @@ use SmartEmailing\Util\Helpers;
 class ChangeEmailAddress extends AbstractModel
 {
 
-    /** Original e-mail address of existing contact */
+    /**
+     * Original e-mail address of existing contact 
+     */
     protected string $originalEmailAddress;
-    /** New e-mail address */
+    /**
+     * New e-mail address 
+     */
     protected string $newEmailAddress;
 
     /**
@@ -51,10 +55,12 @@ class ChangeEmailAddress extends AbstractModel
     }
 
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'from' => "string",
         'to' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

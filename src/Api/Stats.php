@@ -9,7 +9,7 @@ use SmartEmailing\Api\Model\Search\NewsletterStats as SearchNewsletterStats;
 use SmartEmailing\Api\Model\Search\CampaignStats as SearchCampaignStats;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Stats
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Stats
  * @package SmartEmailing\Api
  */
 class Stats extends AbstractApi

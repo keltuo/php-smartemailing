@@ -10,7 +10,7 @@ use SmartEmailing\Api\Model\Search\CustomFields as SearchCustomField;
 use SmartEmailing\Api\Model\Search\SingleCustomFields as SearchSingleCustomField;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfields
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfields
  * @package SmartEmailing\Api
  */
 class CustomFields extends AbstractApi
@@ -28,12 +28,16 @@ class CustomFields extends AbstractApi
      */
     public function remove(int $idCustomField): Response
     {
-        return new Response($this->delete($this->replaceUrlParameters(
-            'customfields/:id',
-            [
-                'id' => $idCustomField
-            ]
-        )));
+        return new Response(
+            $this->delete(
+                $this->replaceUrlParameters(
+                    'customfields/:id',
+                    [
+                    'id' => $idCustomField
+                    ]
+                )
+            )
+        );
     }
 
     /**
@@ -60,14 +64,16 @@ class CustomFields extends AbstractApi
     public function getSingle(int $idCustomField, SearchSingleCustomField $search = null): Response
     {
         $search = $search ?? new SearchSingleCustomField();
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'customfields/:id',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'customfields/:id',
+                    [
                     'id' => $idCustomField
-                ]
-            ),
-            $search->toArray()
-        ));
+                    ]
+                ),
+                $search->toArray()
+            )
+        );
     }
 }

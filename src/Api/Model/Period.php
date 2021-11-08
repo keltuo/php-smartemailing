@@ -21,12 +21,14 @@ class Period extends AbstractModel
      * Allowed values: see getAllowedUnits()
      */
     protected string $unit;
-    /**  Period value, must be integer */
+    /**
+     * Period value, must be integer 
+     */
     protected int $value;
 
     /**
      * @param string $unit
-     * @param int $value
+     * @param int    $value
      */
     public function __construct(string $unit, int $value)
     {
@@ -57,10 +59,12 @@ class Period extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'unit' => "string",
         'value' => "int"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

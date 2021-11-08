@@ -36,9 +36,9 @@ class Purpose extends AbstractModel
     protected ?string $notes;
 
     /**
-     * @param string $lawfulBasis
-     * @param string $name
-     * @param Period $duration
+     * @param string      $lawfulBasis
+     * @param string      $name
+     * @param Period      $duration
      * @param string|null $notes
      */
     public function __construct(
@@ -46,8 +46,7 @@ class Purpose extends AbstractModel
         string $name,
         Period $duration,
         ?string $notes = null
-    )
-    {
+    ) {
         $this->setLawfulBasis($lawfulBasis);
         $this->setName($name);
         $this->setDuration($duration);
@@ -109,12 +108,14 @@ class Purpose extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'lawful_basis' => "string",
         'name' => "string",
         'duration' => "\SmartEmailing\Api\Model\Period",
         'notes' => "null|string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

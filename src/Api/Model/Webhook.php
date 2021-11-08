@@ -74,10 +74,12 @@ class Webhook extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'target_url' => "string",
         'event' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

@@ -10,10 +10,10 @@ use SmartEmailing\Exception\RequiredFieldException;
 class NewContactList extends ContactList
 {
     /**
-     * @param string $name
-     * @param string $senderName
-     * @param string $senderEmail
-     * @param string $replyTo
+     * @param string      $name
+     * @param string      $senderName
+     * @param string      $senderEmail
+     * @param string      $replyTo
      * @param string|null $publicName
      */
     public function __construct(
@@ -22,8 +22,7 @@ class NewContactList extends ContactList
         string $senderEmail,
         string $replyTo,
         ?string $publicName = null
-    )
-    {
+    ) {
         parent::__construct(
             $name,
             $publicName,
@@ -33,13 +32,15 @@ class NewContactList extends ContactList
         );
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'name' => "string",
         'publicname' => "null|string",
         'sendername' => "string",
         'senderemail' => "string",
         'replyto' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         $data = array_filter(

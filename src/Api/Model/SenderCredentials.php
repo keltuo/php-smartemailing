@@ -52,10 +52,12 @@ class SenderCredentials extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'sender_name' => "string",
         'reply_to' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

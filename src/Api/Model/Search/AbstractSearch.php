@@ -123,24 +123,27 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
         return (string)json_encode($this);
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         self::TYPE_SELECT => "array",
         self::TYPE_EXPAND => "array",
         self::TYPE_SORT => "array",
         self::TYPE_ACTION_TYPE => "null|string",
         self::TYPE_LIMIT => "int",
-        self::TYPE_OFFSET => "int"])
+        self::TYPE_OFFSET => "int"]
+    )
     ]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             self::TYPE_SELECT => $this->select,
             self::TYPE_EXPAND => $this->expand,
             self::TYPE_SORT => $this->sort,
             self::TYPE_ACTION_TYPE => $this->actionType,
             self::TYPE_LIMIT => $this->limit,
             self::TYPE_OFFSET => $this->offset
-        ],
+            ],
             fn($item) => (
                 (is_array($item) && count($item) > 0)
                 || (is_string($item) && ($item !== ''))
@@ -149,13 +152,15 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
         );
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         self::TYPE_SELECT => 'array',
         self::TYPE_EXPAND => 'array',
         self::TYPE_SORT => 'array',
         self::TYPE_ACTION_TYPE => 'null|string',
         self::TYPE_LIMIT => 'int',
-        self::TYPE_OFFSET => 'int'])
+        self::TYPE_OFFSET => 'int']
+    )
     ]
     public function jsonSerialize(): array
     {

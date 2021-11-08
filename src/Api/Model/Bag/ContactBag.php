@@ -15,8 +15,7 @@ class ContactBag extends AbstractBag
 
     public function create(
         string $emailAddress
-    ): Contact
-    {
+    ): Contact {
         $model = (new Contact($emailAddress));
         $this->add($model);
         return $model;

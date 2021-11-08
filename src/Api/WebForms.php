@@ -7,7 +7,7 @@ namespace SmartEmailing\Api;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Web_Forms
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Web_Forms
  * @package SmartEmailing\Api
  */
 class WebForms extends AbstractApi
@@ -25,13 +25,15 @@ class WebForms extends AbstractApi
      */
     public function getSingle(int $idWebForm): Response
     {
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'web-form-structure/:id',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'web-form-structure/:id',
+                    [
                     'id' => $idWebForm
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 }

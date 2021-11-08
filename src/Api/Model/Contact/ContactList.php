@@ -23,7 +23,7 @@ class ContactList extends AbstractModel implements ModelInterface
     protected string $status = self::CONFIRMED;
 
     /**
-     * @param int $id
+     * @param int    $id
      * @param string $status
      */
     public function __construct(int $id, string $status)
@@ -56,7 +56,8 @@ class ContactList extends AbstractModel implements ModelInterface
                 self::CONFIRMED,
                 self::UNSUBSCRIBED,
                 self::REMOVED
-            ]);
+            ]
+        );
         $this->status = $status;
         return $this;
     }
@@ -71,10 +72,12 @@ class ContactList extends AbstractModel implements ModelInterface
         return $this->status;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'id' => "int",
         'status' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

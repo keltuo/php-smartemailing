@@ -9,7 +9,7 @@ use \SmartEmailing\Api\Model\Import as ImportModel;
 use SmartEmailing\Api\Model\Response\ImportResponse;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Import
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Import
  * @package SmartEmailing\Api
  */
 class Import extends AbstractApi

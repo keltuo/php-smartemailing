@@ -16,7 +16,7 @@ class FeedItem extends AbstractModel implements ModelInterface
     /**
      * @param string $id
      * @param string $feedName
-     * @param int $quantity
+     * @param int    $quantity
      */
     public function __construct(string $id, string $feedName, int $quantity = 0)
     {
@@ -64,11 +64,13 @@ class FeedItem extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'item_id' => "string",
         'feed_name' => "string",
         'quantity' => "int"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

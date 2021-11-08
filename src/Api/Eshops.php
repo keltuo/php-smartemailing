@@ -8,7 +8,7 @@ use SmartEmailing\Api\Model\Order;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-E_shops
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-E_shops
  * @package SmartEmailing\Api
  */
 class Eshops extends AbstractApi

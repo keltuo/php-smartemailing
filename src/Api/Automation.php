@@ -8,7 +8,7 @@ use SmartEmailing\Api\Model\Bag\TriggerEventBag;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Automation
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Automation
  * @package SmartEmailing\Api
  */
 class Automation extends AbstractApi

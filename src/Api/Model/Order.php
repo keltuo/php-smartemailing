@@ -58,14 +58,13 @@ class Order extends AbstractModel implements ModelInterface
         string $emailAddress,
         string $eshopName,
         string $eshopCode
-    )
-    {
+    ) {
         $this->setEmailAddress($emailAddress);
         $this->setEshopName($eshopName);
         $this->setEshopCode($eshopCode);
         $this->setAttributeBag(new AttributeBag());
         $this->setOrderItemBag(new OrderItemBag());
-        $this->setFeedItemBag( new FeedItemBag());
+        $this->setFeedItemBag(new FeedItemBag());
     }
 
     #[Pure]
@@ -125,13 +124,15 @@ class Order extends AbstractModel implements ModelInterface
 
     public function setStatus(string $status): Order
     {
-        AllowedTypeException::check($status, [
+        AllowedTypeException::check(
+            $status, [
             self::STATUS_PLACED,
             self::STATUS_CANCELED,
             self::STATUS_PROCESSING,
             self::STATUS_SHIPPED,
             self::STATUS_UNKNOWN
-        ]);
+            ]
+        );
         $this->status = $status;
         return $this;
     }
@@ -181,7 +182,8 @@ class Order extends AbstractModel implements ModelInterface
         return $this->feedItemBag;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'emailaddress' => "string",
         'eshop_name' => "string",
         'eshop_code' => "string",
@@ -191,9 +193,11 @@ class Order extends AbstractModel implements ModelInterface
         'attributes' => "mixed",
         'items' => "mixed",
         'item_feeds' => "mixed"
-    ])] public function toArray(): array
+        ]
+    )] public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'emailaddress' => $this->getEmailAddress(),
             'eshop_name' => $this->getEshopName(),
             'eshop_code' => $this->getEshopCode(),
@@ -203,9 +207,10 @@ class Order extends AbstractModel implements ModelInterface
             'attributes' => $this->getAttributeBag(),
             'items' => $this->getOrderItemBag(),
             'item_feeds' => $this->getFeedItemBag(),
-        ], fn($item) => (
+            ], fn($item) => (
             (!is_object($item) && !empty($item))
             || (is_object($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
-        ));
+            )
+        );
     }
 }

@@ -15,8 +15,8 @@ class Price extends AbstractModel
     protected string $currency;
 
     /**
-     * @param float $withoutVat
-     * @param float $withVat
+     * @param float  $withoutVat
+     * @param float  $withVat
      * @param string $currency
      */
     public function __construct(float $withoutVat, float $withVat, string $currency)
@@ -56,7 +56,7 @@ class Price extends AbstractModel
     /**
      * item price currency code (ISO-4217 three-letter ("Alpha-3")) i.e.: CZK, EUR
      *
-     * @param string $currency
+     * @param  string $currency
      * @return Price
      */
     public function setCurrency(string $currency): Price
@@ -65,11 +65,13 @@ class Price extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'without_vat' => "float",
         'with_vat' => "float",
         'currency' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

@@ -8,7 +8,9 @@ use JetBrains\PhpStorm\ArrayShape;
 
 class MessageContent extends AbstractModel
 {
-    /** Subject of email */
+    /**
+     * Subject of email 
+     */
     protected string $subject;
     /**
      * HTML contents of email
@@ -66,11 +68,13 @@ class MessageContent extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'subject' => "string",
         'html_body' => "string",
         'text_body' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

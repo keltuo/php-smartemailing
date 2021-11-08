@@ -17,7 +17,9 @@ class CustomField extends AbstractModel
     public const RADIO = "radio";
     public const SELECT = "select";
 
-    /** Customfield name */
+    /**
+     * Customfield name 
+     */
     protected string $name;
     /**
      * Customfield type,
@@ -71,10 +73,12 @@ class CustomField extends AbstractModel
         ];
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'name' => "string",
         'type' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         $data = [

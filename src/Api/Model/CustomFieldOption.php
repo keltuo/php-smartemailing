@@ -10,7 +10,9 @@ use SmartEmailing\Exception\RequiredFieldException;
 
 class CustomFieldOption extends AbstractModel
 {
-    /** Parent customfield ID */
+    /**
+     * Parent customfield ID 
+     */
     protected int $customFieldId;
     /**
      * Order of option as displayed in web forms and Contact detail. Lower number will be displayed higher in the list.
@@ -22,8 +24,8 @@ class CustomFieldOption extends AbstractModel
     protected string $name;
 
     /**
-     * @param int $customFieldId
-     * @param int $order
+     * @param int    $customFieldId
+     * @param int    $order
      * @param string $name
      */
     public function __construct(int $customFieldId, int $order, string $name)
@@ -66,11 +68,13 @@ class CustomFieldOption extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'customfield_id' => "int",
         'order' => "int",
         'name' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         $data = [

@@ -17,8 +17,7 @@ class PurposeBag extends AbstractBag
         int $id,
         ?string $validFrom = null,
         ?string $validTo = null
-    ): Purpose
-    {
+    ): Purpose {
         $model = new Purpose($id, $validFrom, $validTo);
         $this->add($model);
         return $model;

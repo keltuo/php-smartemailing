@@ -12,7 +12,9 @@ class DoubleOptInSettings extends AbstractModel
     public const SEND_MODE_ALL = 'all';
     public const SEND_MODE_NEW_IN_DATABASE = 'new-in-database';
 
-    /** Double-opt-in e-mail settings  */
+    /**
+     * Double-opt-in e-mail settings  
+     */
     protected Campaign $campaign;
     /**
      * By adding silence period you will not send double opt-in e-mail to any emailaddress that
@@ -33,8 +35,8 @@ class DoubleOptInSettings extends AbstractModel
     protected string $sendToMode;
 
     /**
-     * @param Campaign $campaign
-     * @param string $sendToMode
+     * @param Campaign           $campaign
+     * @param string             $sendToMode
      * @param SilencePeriod|null $silencePeriod
      */
     public function __construct(Campaign $campaign, string $sendToMode, ?SilencePeriod $silencePeriod = null,)
@@ -79,11 +81,13 @@ class DoubleOptInSettings extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'campaign' => "\SmartEmailing\Api\Model\Contact\Campaign",
         'silence_period' => "null|\SmartEmailing\Api\Model\Contact\SilencePeriod",
         'send_to_mode' => "string"
-    ])] public function toArray(): array
+        ]
+    )] public function toArray(): array
     {
         return [
             'campaign' => $this->getCampaign(),

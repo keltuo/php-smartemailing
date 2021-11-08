@@ -13,7 +13,9 @@ use SmartEmailing\Api\Model\Bag\ReplaceBag;
 class Task extends AbstractModel implements ModelInterface
 {
 
-    /** Single recipient's data. New contact will be created if it does not exist yet. */
+    /**
+     * Single recipient's data. New contact will be created if it does not exist yet. 
+     */
     protected Recipient $recipient;
     /**
      * Dynamic tags to customize e-mail for current recipient.
@@ -25,18 +27,17 @@ class Task extends AbstractModel implements ModelInterface
     protected array $templateVariables = array();
 
     /**
-     * @param Recipient $recipient
-     * @param ReplaceBag|null $replaceBag
+     * @param Recipient          $recipient
+     * @param ReplaceBag|null    $replaceBag
      * @param AttachmentBag|null $attachmentsBag
-     * @param array $templateVariables
+     * @param array              $templateVariables
      */
     public function __construct(
         Recipient $recipient,
         ?ReplaceBag $replaceBag = null,
         ?AttachmentBag $attachmentsBag = null,
         array $templateVariables = []
-    )
-    {
+    ) {
         $this->setRecipient($recipient);
         $this->setReplaceBag(is_null($replaceBag) ? new ReplaceBag() : $replaceBag);
         $this->setAttachmentsBag(is_null($attachmentsBag) ? new AttachmentBag() : $attachmentsBag);
@@ -99,20 +100,23 @@ class Task extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'recipient' => "\SmartEmailing\Api\Model\Recipient",
         'replace' => "\SmartEmailing\Api\Model\Bag\ReplaceBag",
         'template_variables' => "array",
         'attachments' => "\SmartEmailing\Api\Model\Bag\AttachmentBag"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'recipient' => $this->getRecipient(),
             'replace' => $this->getReplaceBag(),
             'template_variables' => $this->getTemplateVariables(),
             'attachments' => $this->getAttachmentsBag(),
-        ], fn($item) => (
+            ], fn($item) => (
                 (!is_array($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
                 || (!is_array($item) && is_a($item, Recipient::class))
                 || (is_array($item) && count($item)>0)

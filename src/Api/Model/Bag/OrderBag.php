@@ -17,8 +17,7 @@ class OrderBag extends AbstractBag
         string $emailAddress,
         string $eshopName,
         string $eshopCode
-    ): Order
-    {
+    ): Order {
         $model = new Order($emailAddress, $eshopName, $eshopCode);
         $this->add($model);
         return $model;

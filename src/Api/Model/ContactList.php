@@ -9,15 +9,25 @@ use SmartEmailing\Util\Helpers;
 
 class ContactList extends AbstractModel
 {
-    /** Contactlist name that will not be displayed to public */
+    /**
+     * Contactlist name that will not be displayed to public 
+     */
     protected ?string $name;
-    /** Contactlist name that will be displayed to public*/
+    /**
+     * Contactlist name that will be displayed to public
+     */
     protected ?string $publicName;
-    /** Name of contact list owner, will be used in your campaigns */
+    /**
+     * Name of contact list owner, will be used in your campaigns 
+     */
     protected ?string $senderName;
-    /** E-mail address of list owner, will be used in your campaigns */
+    /**
+     * E-mail address of list owner, will be used in your campaigns 
+     */
     protected ?string $senderEmail;
-    /** Reply-to e-mail address of list owner, will be used in your campaigns */
+    /**
+     * Reply-to e-mail address of list owner, will be used in your campaigns 
+     */
     protected ?string $replyTo;
 
     /**
@@ -33,8 +43,7 @@ class ContactList extends AbstractModel
         ?string $senderName = null,
         ?string $senderEmail = null,
         ?string $replyTo = null
-    )
-    {
+    ) {
         $this->setName($name);
         $this->setPublicName($publicName);
         $this->setSenderName($senderName);
@@ -101,13 +110,15 @@ class ContactList extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'name' => "string",
         'publicname' => "null|string",
         'sendername' => "string",
         'senderemail' => "string",
         'replyto' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return array_filter(

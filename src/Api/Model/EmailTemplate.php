@@ -8,13 +8,17 @@ use SmartEmailing\Api\Model\Bag\ReplaceBag;
 
 class EmailTemplate extends AbstractModel
 {
-    /** E-mail or E-mail template ID */
+    /**
+     * E-mail or E-mail template ID 
+     */
     protected int $emailId;
-    /** Dynamic contents to be replaced */
+    /**
+     * Dynamic contents to be replaced 
+     */
     protected ReplaceBag $replaceBag;
 
     /**
-     * @param int $emailId
+     * @param int             $emailId
      * @param ReplaceBag|null $replaceBag
      */
     public function __construct(int $emailId, ?ReplaceBag $replaceBag = null)
@@ -45,10 +49,12 @@ class EmailTemplate extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'email_id' => "int",
         'replace' => "\SmartEmailing\Api\Model\Bag\ReplaceBag"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

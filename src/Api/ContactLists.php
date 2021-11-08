@@ -9,7 +9,7 @@ use SmartEmailing\Api\Model\NewContactList;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contactlists
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Contactlists
  * @package SmartEmailing\Api
  */
 class ContactLists extends AbstractApi
@@ -19,14 +19,16 @@ class ContactLists extends AbstractApi
      */
     public function getAddedContacts(int $idContactList): Response
     {
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'contactlists/:id/added-contacts',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'contactlists/:id/added-contacts',
+                    [
                     'id' => $idContactList
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 
     /**
@@ -42,14 +44,16 @@ class ContactLists extends AbstractApi
      */
     public function getDistribution(int $idContactList): Response
     {
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'contactlists/:id/distribution',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'contactlists/:id/distribution',
+                    [
                     'id' => $idContactList
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 
     /**
@@ -67,15 +71,17 @@ class ContactLists extends AbstractApi
     public function getSingle(int $idContactList, ContactListSearch $search = null): Response
     {
         $search = $search ?? new ContactListSearch();
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'contactlists/:id',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'contactlists/:id',
+                    [
                     'id' => $idContactList
-                ]
-            ),
-            $search->toArray()
-        ));
+                    ]
+                ),
+                $search->toArray()
+            )
+        );
     }
 
     /**
@@ -83,14 +89,16 @@ class ContactLists extends AbstractApi
      */
     public function truncate(int $idContactList): Response
     {
-        return new Response($this->post(
-            $this->replaceUrlParameters(
-                'contactlists/:id/truncate',
-                [
+        return new Response(
+            $this->post(
+                $this->replaceUrlParameters(
+                    'contactlists/:id/truncate',
+                    [
                     'id' => $idContactList
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 
     /**
@@ -98,12 +106,16 @@ class ContactLists extends AbstractApi
      */
     public function update(int $idContactList, ContactList $contactList): Response
     {
-        return new Response($this->put($this->replaceUrlParameters(
-            'contactlists/:id',
-            [
-                'id' => $idContactList
-            ]
-        ), $contactList->toArray()));
+        return new Response(
+            $this->put(
+                $this->replaceUrlParameters(
+                    'contactlists/:id',
+                    [
+                    'id' => $idContactList
+                    ]
+                ), $contactList->toArray()
+            )
+        );
     }
 
     /**
@@ -111,14 +123,16 @@ class ContactLists extends AbstractApi
      */
     public function getAllContacts(int $idContactList): Response
     {
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'contactlists/:id/contacts',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'contactlists/:id/contacts',
+                    [
                     'id' => $idContactList
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 
     /**
@@ -126,14 +140,16 @@ class ContactLists extends AbstractApi
      */
     public function getAllConfirmedContacts(int $idContactList): Response
     {
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'contactlists/:id/contacts/confirmed',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'contactlists/:id/contacts/confirmed',
+                    [
                     'id' => $idContactList
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 
     /**
@@ -141,13 +157,15 @@ class ContactLists extends AbstractApi
      */
     public function getAllUnsubscribedContacts(int $idContactList): Response
     {
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'contactlists/:id/contacts/unsubscribed',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'contactlists/:id/contacts/unsubscribed',
+                    [
                     'id' => $idContactList
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 }

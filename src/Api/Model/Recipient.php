@@ -43,9 +43,11 @@ class Recipient extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'emailaddress' => "string",
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

@@ -15,6 +15,7 @@ class CustomField extends AbstractModel implements ModelInterface
     /**
      * Array of Customfields options IDs matching with selected Custom-field.
      * Required for composite custom-fields
+     *
      * @var array
      */
     protected array $options = [];
@@ -25,9 +26,11 @@ class CustomField extends AbstractModel implements ModelInterface
      */
     protected string $value = '';
 
-    /**.
-     * @param int $id
-     * @param array $options
+    /**
+     * .
+     *
+     * @param int    $id
+     * @param array  $options
      * @param string $value
      */
     public function __construct(int $id, array $options = [], string $value = '')
@@ -82,17 +85,21 @@ class CustomField extends AbstractModel implements ModelInterface
         return $this->value;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'id' => "int",
         'options' => "array",
         'value' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'id' => $this->getId(),
             'options' => $this->getOptions(),
             'value' => $this->getValue()
-        ], fn($item) => !empty($item));
+            ], fn($item) => !empty($item)
+        );
     }
 }

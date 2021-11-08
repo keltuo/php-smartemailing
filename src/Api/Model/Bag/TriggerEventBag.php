@@ -18,8 +18,7 @@ class TriggerEventBag extends AbstractBag
         string $emailAddress,
         string $name,
         array $payload = [],
-    ): Event
-    {
+    ): Event {
         $model = new Event($emailAddress, $name, $payload);
         $this->add($model);
         return $model;

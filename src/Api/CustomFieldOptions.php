@@ -9,7 +9,7 @@ use SmartEmailing\Api\Model\Search\CustomFieldOptions as SearchCustomFieldOption
 use SmartEmailing\Api\Model\Search\SingleCustomFieldOptions as SearchSingleCustomFieldOptions;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options
  * @package SmartEmailing\Api
  */
 class CustomFieldOptions extends AbstractApi
@@ -27,12 +27,16 @@ class CustomFieldOptions extends AbstractApi
      */
     public function remove(int $idCustomField): Response
     {
-        return new Response($this->delete($this->replaceUrlParameters(
-            'customfield-options/:id',
-            [
-                'id' => $idCustomField
-            ]
-        )));
+        return new Response(
+            $this->delete(
+                $this->replaceUrlParameters(
+                    'customfield-options/:id',
+                    [
+                    'id' => $idCustomField
+                    ]
+                )
+            )
+        );
     }
 
     /**
@@ -50,15 +54,17 @@ class CustomFieldOptions extends AbstractApi
     public function getSingle(int $idCustomField, SearchSingleCustomFieldOptions $search = null): Response
     {
         $search = $search ?? new SearchSingleCustomFieldOptions();
-        return new Response($this->get(
-            $this->replaceUrlParameters(
-                'customfield-options/:id',
-                [
+        return new Response(
+            $this->get(
+                $this->replaceUrlParameters(
+                    'customfield-options/:id',
+                    [
                     'id' => $idCustomField
-                ]
-            ),
-            $search->toArray()
-        ));
+                    ]
+                ),
+                $search->toArray()
+            )
+        );
     }
 
     /**
@@ -66,12 +72,15 @@ class CustomFieldOptions extends AbstractApi
      */
     public function update(int $idCustomField, CustomFieldOption $customFieldOption): Response
     {
-        return new Response($this->patch(
-            $this->replaceUrlParameters(
-                'customfield-options/:id',
-                [
+        return new Response(
+            $this->patch(
+                $this->replaceUrlParameters(
+                    'customfield-options/:id',
+                    [
                     'id' => $idCustomField
-                ]
-        ), $customFieldOption->toArray()));
+                    ]
+                ), $customFieldOption->toArray()
+            )
+        );
     }
 }

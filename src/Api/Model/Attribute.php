@@ -51,10 +51,12 @@ class Attribute extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'name' => "string",
         'value' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

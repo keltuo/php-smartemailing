@@ -17,8 +17,7 @@ class FeedItemBag extends AbstractBag
         string $idItem,
         string $feedName,
         int $quantity = 0
-    ): FeedItem
-    {
+    ): FeedItem {
         $model = new FeedItem($idItem, $feedName, $quantity);
         $this->add($model);
         return $model;

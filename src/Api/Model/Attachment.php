@@ -65,11 +65,13 @@ class Attachment extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'file_name' => "string",
         'content_type' => "string",
         'data_base64' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

@@ -23,8 +23,8 @@ class OrderItem extends AbstractModel implements ModelInterface
     /**
      * @param string $id
      * @param string $name
-     * @param Price $price
-     * @param int $quantity
+     * @param Price  $price
+     * @param int    $quantity
      * @param string $url
      */
     public function __construct(
@@ -33,8 +33,7 @@ class OrderItem extends AbstractModel implements ModelInterface
         Price $price,
         int $quantity,
         string $url
-    )
-    {
+    ) {
         $this->setId($id);
         $this->setName($name);
         $this->setPrice($price);
@@ -137,7 +136,8 @@ class OrderItem extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'id' => "string",
         'name' => "string",
         'description' => "null|string",
@@ -146,10 +146,12 @@ class OrderItem extends AbstractModel implements ModelInterface
         'url' => "string",
         'image_url' => "string",
         'attributes' => "\SmartEmailing\Api\Model\Bag\AttributesBag"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
@@ -158,10 +160,11 @@ class OrderItem extends AbstractModel implements ModelInterface
             'url' => $this->getUrl(),
             'image_url' => $this->getImageUrl(),
             'attributes' => $this->getAttributeBag(),
-        ], fn ($item) => (
+            ], fn ($item) => (
             (!is_object($item) && !empty($item))
             || (is_object($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
             || (is_object($item) && is_a($item, Price::class))
-        ));
+            )
+        );
     }
 }

@@ -11,7 +11,9 @@ use SmartEmailing\Api\Model\Bag\TaskBag;
 class Sms extends AbstractModel implements ModelInterface
 {
 
-    /** Tag used for SMS grouping*/
+    /**
+     * Tag used for SMS grouping
+     */
     protected string $tag;
     /**
      * Id of SMS to send.
@@ -26,8 +28,8 @@ class Sms extends AbstractModel implements ModelInterface
     protected TaskBag $taskBag;
 
     /**
-     * @param string $tag
-     * @param int $smsId
+     * @param string       $tag
+     * @param int          $smsId
      * @param TaskBag|null $taskBag
      */
     public function __construct(string $tag, int $smsId, ?TaskBag $taskBag = null)
@@ -76,7 +78,8 @@ class Sms extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'tag' => "string",
         'sms_id' => "int",
         'tasks' => "\SmartEmailing\Api\Model\Bag\TaskBag"

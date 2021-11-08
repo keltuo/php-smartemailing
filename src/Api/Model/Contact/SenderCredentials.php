@@ -8,7 +8,9 @@ use SmartEmailing\Util\Helpers;
 
 class SenderCredentials extends \SmartEmailing\Api\Model\SenderCredentials
 {
-    /**  From e-mail address of opt-in campaign */
+    /**
+     * From e-mail address of opt-in campaign 
+     */
     protected string $from;
 
     /**
@@ -34,15 +36,19 @@ class SenderCredentials extends \SmartEmailing\Api\Model\SenderCredentials
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'from' => "string",
         'sender_name' => "string",
         'reply_to' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_merge([
+        return array_merge(
+            [
             'from' => $this->getFrom(),
-        ], parent::toArray());
+            ], parent::toArray()
+        );
     }
 }

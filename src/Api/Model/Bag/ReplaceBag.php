@@ -16,8 +16,7 @@ class ReplaceBag extends AbstractBag
     public function create(
         string $key,
         string $content,
-    ): Replace
-    {
+    ): Replace {
         $model = new Replace($key, $content);
         $this->add($model);
         return $model;

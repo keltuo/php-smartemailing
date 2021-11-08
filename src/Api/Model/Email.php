@@ -8,9 +8,13 @@ use SmartEmailing\Api\Model\Bag\ReplaceBag;
 
 class Email extends AbstractModel
 {
-    /** E-mail subject */
+    /**
+     * E-mail subject 
+     */
     protected string $title;
-    /** HTML body, not required if textbody is provided */
+    /**
+     * HTML body, not required if textbody is provided 
+     */
     protected ?string $htmlBody;
     /**
      * Plain text body. Not required if htmlbody is provided.
@@ -29,11 +33,11 @@ class Email extends AbstractModel
     protected ?int $footerId;
 
     /**
-     * @param string $title
+     * @param string      $title
      * @param string|null $htmlBody
      * @param string|null $textBody
-     * @param bool|null $template
-     * @param int|null $footerId
+     * @param bool|null   $template
+     * @param int|null    $footerId
      */
     public function __construct(
         string $title,
@@ -41,8 +45,7 @@ class Email extends AbstractModel
         ?string $textBody = null,
         ?bool $template = null,
         ?int $footerId = null
-    )
-    {
+    ) {
         $this->setTitle($title);
         $this->setHtmlBody($htmlBody);
         $this->setTextBody($textBody);
@@ -105,13 +108,15 @@ class Email extends AbstractModel
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'title' => "string",
         'htmlbody' => "null|string",
         'textbody' => "null|string",
         'template' => "bool|null",
         'footer_id' => "int|null"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

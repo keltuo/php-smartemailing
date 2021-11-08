@@ -56,10 +56,12 @@ class Replace extends AbstractModel implements ModelInterface
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'key' => "string",
         'content' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
         return [

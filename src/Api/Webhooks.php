@@ -9,7 +9,7 @@ use SmartEmailing\Api\Model\Webhook;
 use SmartEmailing\Api\Model\Search\Webhooks as SearchWebhooks;
 
 /**
- * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Webhooks
+ * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Webhooks
  * @package SmartEmailing\Api
  */
 class Webhooks extends AbstractApi
@@ -36,13 +36,15 @@ class Webhooks extends AbstractApi
      */
     public function remove(int $idWebhook): Response
     {
-        return new Response($this->delete(
-            $this->replaceUrlParameters(
-                'web-hooks/:id',
-                [
+        return new Response(
+            $this->delete(
+                $this->replaceUrlParameters(
+                    'web-hooks/:id',
+                    [
                     'id' => $idWebhook
-                ]
+                    ]
+                )
             )
-        ));
+        );
     }
 }

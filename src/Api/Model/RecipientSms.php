@@ -38,14 +38,18 @@ class RecipientSms extends Recipient
         return $this;
     }
 
-    #[ArrayShape([
+    #[ArrayShape(
+        [
         'emailaddress' => "string",
         'cellphone' => "string"
-    ])]
+        ]
+    )]
     public function toArray(): array
     {
-        return array_merge([
+        return array_merge(
+            [
             'cellphone' => $this->getCellphone(),
-        ], parent::toArray());
+            ], parent::toArray()
+        );
     }
 }
