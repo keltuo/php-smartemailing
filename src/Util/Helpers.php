@@ -25,7 +25,7 @@ class Helpers
     public static function replaceUrlParameters(string $uri, array $parameters): string
     {
         foreach ($parameters as $key => $value) {
-            $uri = str_replace((string)u($key)->prepend(':')->lower(), (string)$value, $uri);
+            $uri = str_replace((string)u((string)$key)->prepend(':')->lower(), (string)$value, $uri);
         }
         return $uri;
     }

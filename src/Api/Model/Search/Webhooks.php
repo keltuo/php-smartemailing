@@ -17,7 +17,7 @@ class Webhooks extends AbstractSearch
     public const LAST_CALL_TIME = 'last_call_time';
     public const ERRORS_IN_ROW = 'errors_in_row';
 
-    protected function getSelectAllowedValues(): array
+    protected function getDefaultFields(): array
     {
         return [
             self::ID,
@@ -32,8 +32,14 @@ class Webhooks extends AbstractSearch
         ];
     }
 
-    #[Pure] protected function getFilterAllowedValues(): array
+    protected function getSelectAllowedValues(): array
     {
-        return $this->getSelectAllowedValues();
+        return $this->getDefaultFields();
+    }
+
+    #[Pure]
+    protected function getFilterAllowedValues(): array
+    {
+        return $this->getDefaultFields();
     }
 }

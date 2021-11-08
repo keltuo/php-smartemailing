@@ -13,7 +13,7 @@ class ContactCustomFields extends AbstractSearch
     public const VALUE = 'value';
     public const CUSTOM_FIELD_OPTIONS_ID = 'customfield_options_id';
 
-    protected function getSelectAllowedValues(): array
+    protected function getDefaultFields(): array
     {
         return [
             self::ID,
@@ -24,15 +24,20 @@ class ContactCustomFields extends AbstractSearch
         ];
     }
 
+    protected function getSelectAllowedValues(): array
+    {
+        return $this->getDefaultFields();
+    }
+
     #[Pure]
     protected function getSortAllowedValues(): array
     {
-        return $this->getSelectAllowedValues();
+        return $this->getDefaultFields();
     }
 
     #[Pure]
     protected function getFilterAllowedValues(): array
     {
-        return $this->getSelectAllowedValues();
+        return $this->getDefaultFields();
     }
 }

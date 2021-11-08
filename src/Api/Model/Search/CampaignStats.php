@@ -23,7 +23,7 @@ class CampaignStats extends AbstractSearch
     public const TIME = 'time';
     public const EMAIL_ADDRESS = 'emailaddress';
 
-    protected function getSelectAllowedValues(): array
+    protected function getDefaultFields(): array
     {
         return [
             self::ID,
@@ -36,6 +36,11 @@ class CampaignStats extends AbstractSearch
             self::TIME,
             self::EMAIL_ADDRESS
         ];
+    }
+
+    protected function getSelectAllowedValues(): array
+    {
+        return $this->getDefaultFields();
     }
 
     protected function getActionTypeAllowedValues(): array
@@ -52,6 +57,6 @@ class CampaignStats extends AbstractSearch
     #[Pure]
     protected function getFilterAllowedValues(): array
     {
-        return $this->getSelectAllowedValues();
+        return $this->getDefaultFields();
     }
 }

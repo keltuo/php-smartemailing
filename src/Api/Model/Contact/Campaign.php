@@ -11,7 +11,7 @@ use SmartEmailing\Api\Model\Bag\ReplaceBag;
 class Campaign extends AbstractModel
 {
     /**
-     * ID of E-mail containing {{confirmlink}}. 
+     * ID of E-mail containing {{confirmlink}}.
      */
     protected int $emailId;
 
@@ -21,9 +21,9 @@ class Campaign extends AbstractModel
      * Link can be customized by contact fields e.g. https://example.com/?name={{ df_name }}.
      * If not provided, contact will be redirected to default page [https://app.smartemailing.cz/public/confirmation-complete/].
      */
-    protected ?string $confirmationThankYouPageUrl;
+    protected ?string $confirmationThankYouPageUrl = null;
 
-    protected ?string $validTo;
+    protected ?string $validTo = null;
 
     protected ReplaceBag $replaceBag;
 

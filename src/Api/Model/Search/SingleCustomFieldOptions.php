@@ -10,7 +10,7 @@ class SingleCustomFieldOptions extends AbstractSearch
     public const ORDER = 'order';
     public const CUSTOM_FIELD_ID = 'customfield_id';
 
-    protected function getSelectAllowedValues(): array
+    protected function getDefaultFields(): array
     {
         return [
             self::ID,
@@ -18,5 +18,10 @@ class SingleCustomFieldOptions extends AbstractSearch
             self::ORDER,
             self::CUSTOM_FIELD_ID,
         ];
+    }
+
+    protected function getSelectAllowedValues(): array
+    {
+        return $this->getDefaultFields();
     }
 }

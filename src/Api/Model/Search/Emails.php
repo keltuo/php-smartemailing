@@ -10,6 +10,6 @@ class Emails extends SingleContact
     #[Pure]
     protected function getSortAllowedValues(): array
     {
-        return $this->getSelectAllowedValues();
+        return $this->getDefaultFields();
     }
 }

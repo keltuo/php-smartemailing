@@ -10,13 +10,13 @@ class CustomFields extends SingleCustomFields
     #[Pure]
     protected function getSortAllowedValues(): array
     {
-        return $this->getSelectAllowedValues();
+        return $this->getDefaultFields();
     }
 
     #[Pure]
     protected function getFilterAllowedValues(): array
     {
-        return $this->getSelectAllowedValues();
+        return $this->getDefaultFields();
     }
 
     protected function getExpandAllowedValues(): array

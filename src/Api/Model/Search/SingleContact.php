@@ -22,7 +22,7 @@ class SingleContact extends AbstractSearch
     public const REAL_NAME = 'realname';
     public const CUSTOM_FIELDS = 'customfields';
 
-    protected function getSelectAllowedValues(): array
+    protected function getDefaultFields(): array
     {
         return [
             self::ID,
@@ -41,5 +41,10 @@ class SingleContact extends AbstractSearch
             self::CELLPHONE,
             self::REAL_NAME,
         ];
+    }
+
+    protected function getSelectAllowedValues(): array
+    {
+        return $this->getDefaultFields();
     }
 }

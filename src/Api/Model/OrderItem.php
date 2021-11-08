@@ -13,7 +13,7 @@ class OrderItem extends AbstractModel implements ModelInterface
 {
     protected string $id;
     protected string $name;
-    protected ?string $description;
+    protected ?string $description = null;
     protected Price $price;
     protected int $quantity = 0;
     protected string $url;
