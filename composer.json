@@ -26,7 +26,6 @@
         "php": ">=8.0",
         "ext-json": "*",
         "guzzlehttp/guzzle": ">=6.2",
-        "symfony/options-resolver": "5.1.*",
         "symfony/string": "5.1.*"
     },
     "require-dev": {
