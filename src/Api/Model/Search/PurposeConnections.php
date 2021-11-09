@@ -13,7 +13,7 @@ class PurposeConnections extends AbstractSearch
     public const PURPOSE_ID = 'purpose_id';
     public const DETAILS = 'details';
 
-    protected function getSelectAllowedValues(): array
+    protected function getDefaultFields(): array
     {
         return [
             self::ID,
@@ -24,6 +24,16 @@ class PurposeConnections extends AbstractSearch
             self::PURPOSE_ID,
             self::DETAILS,
         ];
+    }
+
+    protected function getSelectAllowedValues(): array
+    {
+        return $this->getDefaultFields();
+    }
+
+    protected function getFilterAllowedValues(): array
+    {
+        return $this->getDefaultFields();
     }
 
     protected function getSortAllowedValues(): array
