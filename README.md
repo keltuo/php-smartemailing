@@ -285,6 +285,6 @@ Project Link: [https://github.com/keltuo/php-smartemailing](https://github.com/k
 [issues-shield]: https://img.shields.io/github/issues/keltuo/php-smartemailing.svg?style=for-the-badge
 [issues-url]: https://github.com/keltuo/php-smartemailing/issues
 [license-shield]: https://img.shields.io/github/license/keltuo/php-smartemailing.svg?style=for-the-badge
-[license-url]: https://github.com/keltuo/php-smartemailing/blob/master/LICENSE.txt
+[license-url]: https://github.com/keltuo/php-smartemailing/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/lukaspaiskr
