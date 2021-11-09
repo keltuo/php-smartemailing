@@ -14,7 +14,7 @@ class Task extends AbstractModel implements ModelInterface
 {
 
     /**
-     * Single recipient's data. New contact will be created if it does not exist yet. 
+     * Single recipient's data. New contact will be created if it does not exist yet.
      */
     protected Recipient $recipient;
     /**
@@ -117,7 +117,8 @@ class Task extends AbstractModel implements ModelInterface
             'template_variables' => $this->getTemplateVariables(),
             'attachments' => $this->getAttachmentsBag(),
             ], fn($item) => (
-                (!is_array($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
+                (!is_array($item) && is_a($item, AttachmentBag::class))
+                || (!is_array($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
                 || (!is_array($item) && is_a($item, Recipient::class))
                 || (is_array($item) && count($item)>0)
             )

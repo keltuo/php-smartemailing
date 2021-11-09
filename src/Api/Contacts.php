@@ -52,7 +52,7 @@ class Contacts extends AbstractApi
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts-Get_Single_contact_with_lists_and_customfield_values
      */
-    public function getSingle(int $idContactList, SearchSingleContact $search = null): Response
+    public function getSingle(int $idContact, SearchSingleContact $search = null): Response
     {
         $search = $search ?? new SearchSingleContact();
         return new Response(
@@ -60,10 +60,10 @@ class Contacts extends AbstractApi
                 $this->replaceUrlParameters(
                     'contacts/:id',
                     [
-                    'id' => $idContactList
+                    'id' => $idContact
                     ]
                 ),
-                $search->toArray()
+                $search->getAsQuery()
             )
         );
     }

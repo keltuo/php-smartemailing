@@ -25,14 +25,14 @@ class CustomFieldOptions extends AbstractApi
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options-Delete_Customfield_option
      */
-    public function remove(int $idCustomField): Response
+    public function remove(int $idCustomFieldOption): Response
     {
         return new Response(
             $this->delete(
                 $this->replaceUrlParameters(
                     'customfield-options/:id',
                     [
-                    'id' => $idCustomField
+                    'id' => $idCustomFieldOption
                     ]
                 )
             )
@@ -45,13 +45,13 @@ class CustomFieldOptions extends AbstractApi
     public function getList(SearchCustomFieldOptions $search = null): Response
     {
         $search = $search ?? new SearchCustomFieldOptions();
-        return new Response($this->get('customfield-options', $search->toArray()));
+        return new Response($this->get('customfield-options', $search->getAsQuery()));
     }
 
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options-Get_single_Customfield_option
      */
-    public function getSingle(int $idCustomField, SearchSingleCustomFieldOptions $search = null): Response
+    public function getSingle(int $idCustomFieldOption, SearchSingleCustomFieldOptions $search = null): Response
     {
         $search = $search ?? new SearchSingleCustomFieldOptions();
         return new Response(
@@ -59,10 +59,10 @@ class CustomFieldOptions extends AbstractApi
                 $this->replaceUrlParameters(
                     'customfield-options/:id',
                     [
-                    'id' => $idCustomField
+                    'id' => $idCustomFieldOption
                     ]
                 ),
-                $search->toArray()
+                $search->getAsQuery()
             )
         );
     }
@@ -70,14 +70,14 @@ class CustomFieldOptions extends AbstractApi
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options-Update_Customfield_option
      */
-    public function update(int $idCustomField, CustomFieldOption $customFieldOption): Response
+    public function update(int $idCustomFieldOption, CustomFieldOption $customFieldOption): Response
     {
         return new Response(
             $this->patch(
                 $this->replaceUrlParameters(
                     'customfield-options/:id',
                     [
-                    'id' => $idCustomField
+                    'id' => $idCustomFieldOption
                     ]
                 ), $customFieldOption->toArray()
             )

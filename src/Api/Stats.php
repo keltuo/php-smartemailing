@@ -20,7 +20,7 @@ class Stats extends AbstractApi
     public function getCampaignSent(SearchCampaignStats $search = null): Response
     {
         $search = $search ?? new SearchCampaignStats();
-        return new Response($this->get('campaign-stats-sent', $search->toArray()));
+        return new Response($this->get('campaign-stats-sent', $search->getAsQuery()));
     }
 
     /**
@@ -29,6 +29,6 @@ class Stats extends AbstractApi
     public function getNewsletterSummaries(SearchNewsletterStats $search = null): Response
     {
         $search = $search ?? new SearchNewsletterStats();
-        return new Response($this->get('newsletter-stats-summary', $search->toArray()));
+        return new Response($this->get('newsletter-stats-summary', $search->getAsQuery()));
     }
 }

@@ -44,15 +44,15 @@ class CustomCampaigns extends AbstractApi
     protected function send(string $uri, AbstractModel $model, int $chunkLimit): ?Response
     {
         /**
- * @var Sms|TransactionalEmail|CustomEmail $model 
-*/
+         * @var Sms|TransactionalEmail|CustomEmail $model
+        */
         if (!$model->getTaskBag()->isEmpty()) {
             $originalItems = $model->getTaskBag()->getItems();
             $lastResponse = null;
             foreach (array_chunk($originalItems, $chunkLimit) as $items) {
                 /**
- * @var Sms|TransactionalEmail|CustomEmail $chunkModel 
-*/
+                 * @var Sms|TransactionalEmail|CustomEmail $chunkModel
+                */
                 $chunkModel = clone $model;
                 $taskBag = new TaskBag();
                 $taskBag->setItems($items);

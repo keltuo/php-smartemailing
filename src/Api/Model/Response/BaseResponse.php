@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model\Response;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Psr\Http\Message\ResponseInterface;
 use SmartEmailing\Api\Model\PropertyTrait;
+use SmartEmailing\Exception\RequestException;
 
-class BaseResponse
+class BaseResponse implements \JsonSerializable, \Stringable
 {
     use PropertyTrait;
 
@@ -36,12 +38,12 @@ class BaseResponse
     protected string $status = self::ERROR;
 
     /**
-     * @param ResponseInterface $response
+     * @param ResponseInterface|null $response
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(?ResponseInterface $response = null)
     {
         $this->response = $response;
-        $json = json_decode((string)$response->getBody());
+        $json = json_decode((string)$response?->getBody());
         if (is_object($json) && property_exists($json, 'data')) {
             $this->data = (array)$json->data;
         }
@@ -58,6 +60,16 @@ class BaseResponse
             self::HTTP_CREATED_CODE => self::CREATED,
             default => self::ERROR
         };
+
+        if ($this->getStatus() === self::ERROR) {
+            $errorMessage = $this->getMessage();
+            throw new RequestException(
+                $this,
+                null,
+                "Client error: {$errorMessage}",
+                $this->getStatusCode()
+            );
+        }
     }
 
     public function getMessage(): string
@@ -96,5 +108,35 @@ class BaseResponse
             return self::HTTP_ERROR_CODE;
         }
         return $this->getResponse()->getStatusCode();
+    }
+
+    #[ArrayShape(
+        [
+        'statusCode' => "int",
+        'status' => "string",
+        'meta' => "null|object",
+        'data' => "array",
+        'message' => "string"
+        ]
+    )]
+    public function toArray(): array
+    {
+        return [
+            'statusCode' => $this->getStatusCode(),
+            'status' => $this->getStatus(),
+            'meta' => $this->getMeta(),
+            'data' => $this->getData(),
+            'message' => $this->getMessage()
+        ];
+    }
+
+    public function __toString(): string
+    {
+        return (string)json_encode($this);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
     }
 }

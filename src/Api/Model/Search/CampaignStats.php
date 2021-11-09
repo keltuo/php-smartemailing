@@ -11,7 +11,7 @@ class CampaignStats extends AbstractSearch
     public const CAMPAIGN_AUTORESPONDER = 'autoresponder';
     public const CAMPAIGN_CUSTOM_EMAIL = 'custom_email';
     public const CAMPAIGN_TRIGGER_ACTION = 'trigger_action';
-    public const CAMPAIGN_TRANSACTIONAL_EMAIl = 'transactional_email';
+    public const CAMPAIGN_TRANSACTIONAL_EMAIL = 'transactional_email';
 
     public const ID = 'id';
     public const CAMPAIGN_ID = 'campaign_id';
@@ -50,7 +50,7 @@ class CampaignStats extends AbstractSearch
             self::CAMPAIGN_AUTORESPONDER,
             self::CAMPAIGN_CUSTOM_EMAIL,
             self::CAMPAIGN_TRIGGER_ACTION,
-            self::CAMPAIGN_TRANSACTIONAL_EMAIl
+            self::CAMPAIGN_TRANSACTIONAL_EMAIL
         ];
     }
 

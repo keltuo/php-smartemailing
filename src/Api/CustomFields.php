@@ -46,7 +46,7 @@ class CustomFields extends AbstractApi
     public function getContactCustomFields(SearchContactCustomFields $search = null): Response
     {
         $search = $search ?? new SearchContactCustomFields();
-        return new Response($this->get('contact-customfields', $search->toArray()));
+        return new Response($this->get('contact-customfields', $search->getAsQuery()));
     }
 
     /**
@@ -55,7 +55,7 @@ class CustomFields extends AbstractApi
     public function getList(SearchCustomField $search = null): Response
     {
         $search = $search ?? new SearchCustomField();
-        return new Response($this->get('customfields', $search->toArray()));
+        return new Response($this->get('customfields', $search->getAsQuery()));
     }
 
     /**
@@ -72,7 +72,7 @@ class CustomFields extends AbstractApi
                     'id' => $idCustomField
                     ]
                 ),
-                $search->toArray()
+                $search->getAsQuery()
             )
         );
     }

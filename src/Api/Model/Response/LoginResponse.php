@@ -26,4 +26,10 @@ class LoginResponse extends BaseResponse
         return $this->account_id;
     }
 
+    public function toArray(): array
+    {
+        return array_merge(parent::toArray(), [
+            'account_id' => $this->getAccountId(),
+        ]);
+    }
 }

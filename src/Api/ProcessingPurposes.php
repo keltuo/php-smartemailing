@@ -29,7 +29,7 @@ class ProcessingPurposes extends AbstractApi
     public function getListConnections(SearchPurposeConnections $search = null): Response
     {
         $search = $search ?? new SearchPurposeConnections();
-        return new Response($this->get('purpose-connections', $search->toArray()));
+        return new Response($this->get('purpose-connections', $search->getAsQuery()));
     }
 
     /**
@@ -38,7 +38,7 @@ class ProcessingPurposes extends AbstractApi
     public function getList(SearchPurposes $search = null): Response
     {
         $search = $search ?? new SearchPurposes();
-        return new Response($this->get('purposes', $search->toArray()));
+        return new Response($this->get('purposes', $search->getAsQuery()));
     }
 
     /**

@@ -62,7 +62,7 @@ class ContactLists extends AbstractApi
     public function getList(ContactListSearch $search = null): Response
     {
         $search = $search ?? new ContactListSearch();
-        return new Response($this->get('contactlists', $search->toArray()));
+        return new Response($this->get('contactlists', $search->getAsQuery()));
     }
 
     /**
@@ -79,7 +79,7 @@ class ContactLists extends AbstractApi
                     'id' => $idContactList
                     ]
                 ),
-                $search->toArray()
+                $search->getAsQuery()
             )
         );
     }

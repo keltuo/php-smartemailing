@@ -37,7 +37,7 @@ class Emails extends AbstractApi
     public function getList(SearchEmails $search = null): Response
     {
         $search = $search ?? new SearchEmails();
-        return new Response($this->get('emails', $search->toArray()));
+        return new Response($this->get('emails', $search->getAsQuery()));
     }
 
     /**
@@ -46,7 +46,7 @@ class Emails extends AbstractApi
     public function getConfirmationList(SearchEmails $search = null): Response
     {
         $search = $search ?? new SearchEmails();
-        return new Response($this->get('confirmation-emails', $search->toArray()));
+        return new Response($this->get('confirmation-emails', $search->getAsQuery()));
     }
 
     /**
@@ -63,7 +63,7 @@ class Emails extends AbstractApi
                     'id' => $idEmail
                     ]
                 ),
-                $search->toArray()
+                $search->getAsQuery()
             )
         );
     }

@@ -283,7 +283,8 @@ class CustomCampaignsTest extends TestCase
                               "key": "location",
                               "content": "Prague"
                             }
-                        ]
+                        ],
+                        "attachments": []
                     },
                     {
                         "recipient": {
@@ -299,7 +300,8 @@ class CustomCampaignsTest extends TestCase
                               "key": "location",
                               "content": "London"
                             }
-                        ]
+                        ],
+                        "attachments": []
                     }
                 ]
             }
@@ -346,7 +348,8 @@ class CustomCampaignsTest extends TestCase
                                     "image_url": "http://www.imcdb.org/i013795.jpg"
                                 }
                             ]
-                        }
+                        },
+                        "attachments": []
                     },
                     {
                         "recipient": {
@@ -361,7 +364,8 @@ class CustomCampaignsTest extends TestCase
                               "key": "footer",
                               "content": "See you!"
                             }
-                        ]
+                        ],
+                        "attachments": []
                     }
                 ]
             }
@@ -435,7 +439,8 @@ class CustomCampaignsTest extends TestCase
                               "key": "footer_block",
                               "content": "See you!"
                             }
-                        ]
+                        ],
+                        "attachments": []
                     }
                 ]
             }

@@ -5,8 +5,11 @@ namespace SmartEmailing\Api;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use JetBrains\PhpStorm\Pure;
 use Psr\Http\Message\ResponseInterface;
+use SmartEmailing\Api\Model\Response\BaseResponse;
+use SmartEmailing\Exception\RequestException;
 use SmartEmailing\SmartEmailing;
 use SmartEmailing\Util\Helpers;
 use function rawurlencode;
@@ -67,11 +70,25 @@ abstract class AbstractApi
 
     protected function request(string $method, string $uri, array $options = []): ResponseInterface
     {
-        return $this->getClient()->request(
-            $method,
-            self::URI_PREFIX . $uri,
-            $options
-        );
+        try {
+            return $this->getClient()->request(
+                $method,
+                self::URI_PREFIX . $uri,
+                $options
+            );
+        } catch (GuzzleException $exception) {
+            /** @var \GuzzleHttp\Exception\RequestException $exception */
+            $response = new BaseResponse($exception->getResponse());
+            $message = $exception->getMessage();
+
+            if ($message === 'Client error' && is_string($response->getMessage())) {
+                $message = "Client error: {$response->getMessage()}";
+            }
+
+            throw new RequestException(
+                $response, $exception->getRequest(), $message, $exception->getCode(), $exception
+            );
+        }
     }
 
     protected function replaceUrlParameters(string $uri, array $parameters): string

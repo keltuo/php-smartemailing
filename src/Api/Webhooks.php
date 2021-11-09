@@ -28,7 +28,7 @@ class Webhooks extends AbstractApi
     public function getList(SearchWebhooks $search = null): Response
     {
         $search = $search ?? new SearchWebhooks();
-        return new Response($this->get('web-hooks', $search->toArray()));
+        return new Response($this->get('web-hooks', $search->getAsQuery()));
     }
 
     /**

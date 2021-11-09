@@ -6,6 +6,9 @@ services:
     volumes:
       - ./:/var/www/
     command: bash -c "php /var/www/vendor/phpunit/phpunit/phpunit --configuration /var/www/phpunit.xml"
+    depends_on:
+      - composer
+
   composer:
     container_name: composer-sm
     image: composer

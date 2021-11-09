@@ -29,4 +29,10 @@ class ImportResponse extends BaseResponse
         return $this->contacts_map;
     }
 
+    public function toArray(): array
+    {
+        return array_merge(parent::toArray(), [
+            'contacts_map' => $this->getContactsMap(),
+        ]);
+    }
 }
