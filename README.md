@@ -54,7 +54,7 @@
       </ul>
     </li>
     <li>
-      <a href="#api-covarage-tree">Api Coverage Tree</a>
+      <a href="#api-coverage-tree">Api Coverage Tree</a>
       <ul>
         <li><a href="#smartemailing-doc-api-v3">SmartEmailing Doc API V3</a></li>
       </ul>
@@ -63,7 +63,6 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -121,14 +120,14 @@ _For more examples, please refer to the [Documentation](https://app.smartemailin
 
 In project is Docker Compose file, which support PHP8-cli and composer image.
 
-###Basic usage
+### Basic usage
 
 Download composer dependecy and run Unit Tests
 ```bash
 docker-compose up
 ```
 
-###How to set up PHP storm for Run test via docker
+### How to set up PHP storm for Run test via docker
 [link]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -138,7 +137,7 @@ docker-compose up
 <!-- Api coverage -->
 ## Api coverage tree
 
-####SmartEmailing Doc API V3
+#### SmartEmailing Doc API V3
 https://app.smartemailing.cz/docs/api/v3/index.html
 - Tests <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
     - Aliveness test
@@ -270,24 +269,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Lukas Paiskr - [@keltuo](https://twitter.com/keltuo) - lukas@pasysdev.cz
 
 Project Link: [https://github.com/keltuo/php-smartemailing](https://github.com/keltuo/php-smartemailing)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
