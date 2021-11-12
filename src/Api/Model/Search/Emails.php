@@ -5,7 +5,7 @@ namespace SmartEmailing\Api\Model\Search;
 
 use JetBrains\PhpStorm\Pure;
 
-class Emails extends SingleContact
+class Emails extends SingleEmail
 {
     #[Pure]
     protected function getSortAllowedValues(): array

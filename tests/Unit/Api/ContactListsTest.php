@@ -149,6 +149,145 @@ class ContactListsTest extends TestCase
         $this->assertTrue($response->isSuccess());
     }
 
+    public function testShouldGetAllContacts(): void
+    {
+        $expectedArray = $this->getExpectedArrayData();
+
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('contactlists', (new \SmartEmailing\Api\Model\Search\ContactLists())->toArray())
+            ->will($this->returnValue(
+                new Response(200, [], $expectedArray))
+            )
+        ;
+
+        /** @var ContactLists $api */
+        $response = $api->getList(new \SmartEmailing\Api\Model\Search\ContactLists());
+        $expectedObject = json_decode($expectedArray);
+        $this->assertEquals(
+            $expectedObject->data,
+            $response->getData()
+        );
+        $this->assertEquals(
+            $expectedObject->meta,
+            $response->getMeta()
+        );
+        $this->assertEquals(
+            $expectedObject->status,
+            $response->getStatus()
+        );
+        $this->assertTrue($response->isSuccess());
+    }
+
+    public function testShouldGetAllConfirmedContactsInList(): void
+    {
+        $expectedArray = $this->getExpectedArrayData();
+
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with(Helpers::replaceUrlParameters(
+                'contactlists/:id/contacts/confirmed',
+                [
+                    'id' => 7
+                ]
+            ))
+            ->will($this->returnValue(
+                new Response(200, [], $expectedArray))
+            )
+        ;
+
+        /** @var ContactLists $api */
+        $response = $api->getAllConfirmedContacts(7);
+        $expectedObject = json_decode($expectedArray);
+        $this->assertEquals(
+            $expectedObject->data,
+            $response->getData()
+        );
+        $this->assertEquals(
+            $expectedObject->meta,
+            $response->getMeta()
+        );
+        $this->assertEquals(
+            $expectedObject->status,
+            $response->getStatus()
+        );
+        $this->assertTrue($response->isSuccess());
+    }
+
+    public function testShouldGetAllContactsInList(): void
+    {
+        $expectedArray = $this->getExpectedArrayData();
+
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with(Helpers::replaceUrlParameters(
+                'contactlists/:id/contacts',
+                [
+                    'id' => 7
+                ]
+            ))
+            ->will($this->returnValue(
+                new Response(200, [], $expectedArray))
+            )
+        ;
+
+        /** @var ContactLists $api */
+        $response = $api->getAllContacts(7);
+        $expectedObject = json_decode($expectedArray);
+        $this->assertEquals(
+            $expectedObject->data,
+            $response->getData()
+        );
+        $this->assertEquals(
+            $expectedObject->meta,
+            $response->getMeta()
+        );
+        $this->assertEquals(
+            $expectedObject->status,
+            $response->getStatus()
+        );
+        $this->assertTrue($response->isSuccess());
+    }
+
+    public function testShouldGetAllUnsubscribeContactsInList(): void
+    {
+        $expectedArray = $this->getExpectedArrayData();
+
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with(Helpers::replaceUrlParameters(
+                'contactlists/:id/contacts/unsubscribed',
+                [
+                    'id' => 7
+                ]
+            ))
+            ->will($this->returnValue(
+                new Response(200, [], $expectedArray))
+            )
+        ;
+
+        /** @var ContactLists $api */
+        $response = $api->getAllUnsubscribedContacts(7);
+        $expectedObject = json_decode($expectedArray);
+        $this->assertEquals(
+            $expectedObject->data,
+            $response->getData()
+        );
+        $this->assertEquals(
+            $expectedObject->meta,
+            $response->getMeta()
+        );
+        $this->assertEquals(
+            $expectedObject->status,
+            $response->getStatus()
+        );
+        $this->assertTrue($response->isSuccess());
+    }
+
     public function testShouldGetSingle(): void
     {
         $expectedArray = '
@@ -191,6 +330,51 @@ class ContactListsTest extends TestCase
 
         /** @var ContactLists $api */
         $response = $api->getSingle(1);
+        $expectedObject = json_decode($expectedArray);
+        $data = (array)$expectedObject->data;
+        $this->assertEquals(
+            $data,
+            $response->getData()
+        );
+        $this->assertEquals(
+            empty($expectedObject->meta) ? null :$expectedObject->meta,
+            $response->getMeta()
+        );
+        $this->assertEquals(
+            $expectedObject->status,
+            $response->getStatus()
+        );
+        $this->assertTrue($response->isSuccess());
+    }
+
+    public function testShouldGetDistribution(): void
+    {
+        $expectedArray = '
+        {
+            "status": "ok",
+            "meta": [
+             ],
+            "data": {
+                "total": 5,
+                "confirmed": 3,
+                "unsubscribed": 2
+            }
+        }
+        ';
+
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with(Helpers::replaceUrlParameters('contactlists/:id/distribution', [
+                'id' => 1
+            ]))
+            ->will($this->returnValue(
+                new Response(200, [], $expectedArray))
+            )
+        ;
+
+        /** @var ContactLists $api */
+        $response = $api->getDistribution(1);
         $expectedObject = json_decode($expectedArray);
         $data = (array)$expectedObject->data;
         $this->assertEquals(
@@ -267,6 +451,61 @@ class ContactListsTest extends TestCase
             $response->getStatus()
         );
         $this->assertTrue($response->isSuccess());
+    }
+
+    protected function getExpectedArrayData(): string
+    {
+        return '
+        {
+            "status": "ok",
+            "meta": {
+                "total_count": 21,
+                "displayed_count": 2,
+                "offset": 0,
+                "limit": 2
+            },
+            "data": [
+                {
+                    "replyto": "martin@smartemailing.cz",
+                    "clickRate": null,
+                    "hidden": 0,
+                    "alertOut": 0,
+                    "alertIn": 0,
+                    "category": null,
+                    "signature": null,
+                    "sendername": "Martin Strouhal",
+                    "segment_id": null,
+                    "name": "martin@smartemailing.cz",
+                    "openRate": null,
+                    "senderemail": "martin@smartemailing.cz",
+                    "id": 1,
+                    "notes": null,
+                    "trackedDefaultFields": "a:0:{}",
+                    "publicname": "martin@smartemailing.cz",
+                    "created": "2015-07-21 17:55:25"
+                },
+                {
+                    "replyto": "martin@smartemailing.cz",
+                    "clickRate": null,
+                    "hidden": 0,
+                    "alertOut": 0,
+                    "alertIn": 0,
+                    "category": null,
+                    "signature": null,
+                    "sendername": "Martin Strouhal",
+                    "segment_id": null,
+                    "name": "API TEST",
+                    "openRate": null,
+                    "senderemail": "martin@smartemailing.cz",
+                    "id": 737,
+                    "notes": null,
+                    "trackedDefaultFields": "a:0:{}",
+                    "publicname": null,
+                    "created": "2015-09-10 11:31:25"
+                }
+            ]
+        }
+        ';
     }
 
     protected function getApiClass(): string

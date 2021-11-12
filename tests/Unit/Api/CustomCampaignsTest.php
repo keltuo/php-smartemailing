@@ -6,6 +6,7 @@ namespace SmartEmailing\Test\Unit\Api;
 use GuzzleHttp\Psr7\Response;
 use SmartEmailing\Api\Model\Attachment;
 use SmartEmailing\Api\Model\Bag\ReplaceBag;
+use SmartEmailing\Api\Model\Bag\TaskBag;
 use SmartEmailing\Api\Model\Contact\SenderCredentials;
 use SmartEmailing\Api\Model\CustomEmail;
 use SmartEmailing\Api\Model\Recipient;
@@ -71,6 +72,7 @@ class CustomCampaignsTest extends TestCase
             $response->getStatus()
         );
         $this->assertTrue($response->isSuccess());
+        $this->assertNull($api->smsBulk($smsBulk->setTaskBag(new TaskBag())));
     }
 
     public function testShouldSendCustomEmails(): void
@@ -164,6 +166,7 @@ class CustomCampaignsTest extends TestCase
             $response->getStatus()
         );
         $this->assertTrue($response->isSuccess());
+        $this->assertNull($api->emailBulk($customEmail->setTaskBag(new TaskBag())));
     }
 
     public function testShouldSendTransactionalEmails(): void
@@ -260,6 +263,7 @@ class CustomCampaignsTest extends TestCase
             $response->getStatus()
         );
         $this->assertTrue($response->isSuccess());
+        $this->assertNull($api->sendTransactional($transactionalEmail->setTaskBag(new TaskBag())));
     }
 
     protected function getExpectedSmsRequest(): string

@@ -6,7 +6,7 @@ namespace SmartEmailing\Api\Model;
 class Newsletter extends AbstractModel
 {
     /**
-     * Id of email to send 
+     * Id of email to send
      */
     protected int $emailId;
     /**
@@ -52,7 +52,7 @@ class Newsletter extends AbstractModel
      */
     protected ?string $replyTo = null;
     /**
-     * GA settings. 
+     * GA settings.
      */
     protected ?string $utmSource = null;
     protected ?string $utmMedium = null;
@@ -227,7 +227,7 @@ class Newsletter extends AbstractModel
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'email_id' => $this->getEmailId(),
             'contactlists' => $this->getContactListIds(),
             'excluded_contactlists' => $this->getExcludeContactListIds(),
@@ -242,6 +242,6 @@ class Newsletter extends AbstractModel
             'utm_medium' => $this->getUtmMedium(),
             'utm_campaign' => $this->getUtmCampaign(),
             'utm_content' => $this->getUtmContent(),
-        ];
+        ], fn ($item) => !empty($item));
     }
 }

@@ -9,11 +9,15 @@ use SmartEmailing\Api\Model\Bag\ReplaceBag;
 class Email extends AbstractModel
 {
     /**
-     * E-mail subject 
+     * Name of Template
+     */
+    protected string $name;
+    /**
+     * E-mail subject
      */
     protected string $title;
     /**
-     * HTML body, not required if textbody is provided 
+     * HTML body, not required if textbody is provided
      */
     protected ?string $htmlBody;
     /**
@@ -33,6 +37,7 @@ class Email extends AbstractModel
     protected ?int $footerId;
 
     /**
+     * @param string      $name
      * @param string      $title
      * @param string|null $htmlBody
      * @param string|null $textBody
@@ -40,17 +45,30 @@ class Email extends AbstractModel
      * @param int|null    $footerId
      */
     public function __construct(
+        string $name,
         string $title,
         ?string $htmlBody = null,
         ?string $textBody = null,
         ?bool $template = null,
         ?int $footerId = null
     ) {
+        $this->setName($name);
         $this->setTitle($title);
         $this->setHtmlBody($htmlBody);
         $this->setTextBody($textBody);
         $this->setIsTemplate($template);
         $this->setFooterId($footerId);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): Email
+    {
+        $this->name = $name;
+        return $this;
     }
 
     public function getTitle(): string
@@ -86,9 +104,9 @@ class Email extends AbstractModel
         return $this;
     }
 
-    public function getTemplate(): ?bool
+    public function isTemplate(): ?bool
     {
-        return $this->template;
+        return !empty($this->template);
     }
 
     public function setIsTemplate(?bool $template): Email
@@ -110,20 +128,22 @@ class Email extends AbstractModel
 
     #[ArrayShape(
         [
+        'name' => "string",
         'title' => "string",
         'htmlbody' => "null|string",
         'textbody' => "null|string",
-        'template' => "bool|null",
+        'template' => "int|null",
         'footer_id' => "int|null"
         ]
     )]
     public function toArray(): array
     {
         return [
+            'name' => $this->getName(),
             'title' => $this->getTitle(),
             'htmlbody' => $this->getHtmlBody(),
             'textbody' => $this->getTextBody(),
-            'template' => $this->getTemplate(),
+            'template' => (int)$this->isTemplate(),
             'footer_id' => $this->getFooterId(),
         ];
     }

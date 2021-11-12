@@ -13,7 +13,7 @@ use SmartEmailing\Api\Model\ModelInterface;
 use SmartEmailing\Exception\AllowedTypeException;
 use SmartEmailing\Util\Helpers;
 
-class Contact extends AbstractModel implements ModelInterface
+class ContactDetail extends AbstractModel implements ModelInterface
 {
     /**
      * E-mail address of imported contact. This is the only required field.
@@ -215,118 +215,118 @@ class Contact extends AbstractModel implements ModelInterface
         return $this->purposeBag;
     }
 
-    public function setEmailAddress(string $emailAddress): Contact
+    public function setEmailAddress(string $emailAddress): ContactDetail
     {
         Helpers::validateEmail($emailAddress);
         $this->emailAddress = $emailAddress;
         return $this;
     }
 
-    public function setName(?string $name): Contact
+    public function setName(?string $name): ContactDetail
     {
         $this->name = $name;
         return $this;
     }
 
-    public function setSurname(?string $surname): Contact
+    public function setSurname(?string $surname): ContactDetail
     {
         $this->surname = $surname;
         return $this;
     }
 
-    public function setTitlesBefore(?string $titlesBefore): Contact
+    public function setTitlesBefore(?string $titlesBefore): ContactDetail
     {
         $this->titlesBefore = $titlesBefore;
         return $this;
     }
 
-    public function setTitlesAfter(?string $titlesAfter): Contact
+    public function setTitlesAfter(?string $titlesAfter): ContactDetail
     {
         $this->titlesAfter = $titlesAfter;
         return $this;
     }
 
-    public function setSalutation(?string $salutation): Contact
+    public function setSalutation(?string $salutation): ContactDetail
     {
         $this->salutation = $salutation;
         return $this;
     }
 
-    public function setCompany(?string $company): Contact
+    public function setCompany(?string $company): ContactDetail
     {
         $this->company = $company;
         return $this;
     }
 
-    public function setStreet(?string $street): Contact
+    public function setStreet(?string $street): ContactDetail
     {
         $this->street = $street;
         return $this;
     }
 
-    public function setTown(?string $town): Contact
+    public function setTown(?string $town): ContactDetail
     {
         $this->town = $town;
         return $this;
     }
 
-    public function setPostalCode(?string $postalCode): Contact
+    public function setPostalCode(?string $postalCode): ContactDetail
     {
         $this->postalCode = $postalCode;
         return $this;
     }
 
-    public function setCountry(?string $country): Contact
+    public function setCountry(?string $country): ContactDetail
     {
         $this->country = $country;
         return $this;
     }
 
-    public function setCellphone(?string $cellphone): Contact
+    public function setCellphone(?string $cellphone): ContactDetail
     {
         $this->cellphone = $cellphone;
         return $this;
     }
 
 
-    public function setPhone(?string $phone): Contact
+    public function setPhone(?string $phone): ContactDetail
     {
         $this->phone = $phone;
         return $this;
     }
 
-    public function setLanguage(?string $language): Contact
+    public function setLanguage(?string $language): ContactDetail
     {
         $this->language = $language;
         return $this;
     }
 
 
-    public function setNotes(?string $notes): Contact
+    public function setNotes(?string $notes): ContactDetail
     {
         $this->notes = $notes;
         return $this;
     }
 
-    public function setContactListBag(ContactListBag $contactListBag): Contact
+    public function setContactListBag(ContactListBag $contactListBag): ContactDetail
     {
         $this->contactListBag = $contactListBag;
         return $this;
     }
 
-    public function setCustomFieldBag(CustomFieldBag $customFieldBag): Contact
+    public function setCustomFieldBag(CustomFieldBag $customFieldBag): ContactDetail
     {
         $this->customFieldBag = $customFieldBag;
         return $this;
     }
 
-    public function setPurposeBag(PurposeBag $purposeBag): Contact
+    public function setPurposeBag(PurposeBag $purposeBag): ContactDetail
     {
         $this->purposeBag = $purposeBag;
         return $this;
     }
 
-    public function setGender(string $gender): Contact
+    public function setGender(string $gender): ContactDetail
     {
         AllowedTypeException::check(
             $gender, [
@@ -343,7 +343,7 @@ class Contact extends AbstractModel implements ModelInterface
      * will stop further campaigns. Be careful, setting this value to 1 will also un-subscribe contact from all lists.
      * It is recommended not to send this parameter at all if you do not know what you are doing.
      */
-    public function setBlacklisted(bool $blacklisted = true): Contact
+    public function setBlacklisted(bool $blacklisted = true): ContactDetail
     {
         $this->blacklisted = intval($blacklisted);
         return $this;
@@ -352,7 +352,7 @@ class Contact extends AbstractModel implements ModelInterface
     /**
      * Date of Contact's birthday in YYYY-MM-DD 00:00:00 or different format
      */
-    public function setNameDay(string $nameDay): Contact
+    public function setNameDay(string $nameDay): ContactDetail
     {
         $this->nameDay = Helpers::formatDate($nameDay);
         return $this;
@@ -361,7 +361,7 @@ class Contact extends AbstractModel implements ModelInterface
     /**
      * Date of Contact's birthday in YYYY-MM-DD 00:00:00 format  or different format
      */
-    public function setBirthday(string $birthday): Contact
+    public function setBirthday(string $birthday): ContactDetail
     {
         $this->birthday = Helpers::formatDate($birthday);
         return $this;

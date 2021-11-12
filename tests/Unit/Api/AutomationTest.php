@@ -55,6 +55,7 @@ class AutomationTest extends TestCase
             $response->getStatus()
         );
         $this->assertTrue($response->isSuccess());
+        $this->assertNull($api->triggerEvent(new TriggerEventBag()));
     }
 
     protected function getApiClass(): string

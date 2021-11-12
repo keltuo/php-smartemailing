@@ -91,6 +91,8 @@ class EshopsTest extends TestCase
             $response->getStatus()
         );
         $this->assertTrue($response->isSuccess());
+
+        $this->assertNull($api->importOrders(new OrderBag()));
     }
 
     public function testShouldCreateOrder()

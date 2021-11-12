@@ -139,11 +139,11 @@ docker-compose up
 
 #### SmartEmailing Doc API V3
 https://app.smartemailing.cz/docs/api/v3/index.html
-- Tests <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Tests <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Tests.php" target="_blank">Code Examples</a> |  <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Tests" target="_blank">doc api</a>
     - Aliveness test
     - GET Login test
     - POST Login test
-- Contactlists <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Contactlists <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Contactlists" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Contactlists" target="_blank">doc api</a>
     - Count of added contacts in list
     - Create new Contactlist
     - Distribution of Contactlist
@@ -151,37 +151,37 @@ https://app.smartemailing.cz/docs/api/v3/index.html
     - Get single Contactlist
     - Truncate Contactlist
     - Update Contactlist
-- Customfields <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Customfields <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Customfields" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfields" target="_blank">doc api</a>
     - Create new Customfield
     - Delete Customfield
     - Get Customfield values
     - Get Customfields
     - Get single Customfield
-- Automation <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Automation <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Automation.php" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Automation" target="_blank">doc api</a>
     - Trigger event
-- Contacts <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Contacts <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Contacts/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts" target="_blank">doc api</a>
     - Change e-mail address of single contact
     - Forget contact
     - Get Contacts
     - Get single Contact
-- Contacts in lists <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Contacts in lists <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Contacts-in-lists/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts_in_lists" target="_blank">doc api</a>
     - Get all Contacts in list
     - Get confirmed Contacts in list
     - Get unsubscribed Contacts in list
-- Custom campaigns <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Custom campaigns <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Custom-campaigns/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Custom_campaigns" target="_blank">doc api</a>
     - Send bulk custom SMS
     - Send bulk custom emails
     - Send transactional emails
-- Customfield Options <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Customfield Options <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Customfield-options/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options" target="_blank">doc api</a>
     - Create new Customfield option
     - Delete Customfield option
     - Get Customfield options
     - Get single Customfield option
     - Update Customfield option
-- E shops <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- E shops <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Eshops/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-E_shops" target="_blank">doc api</a>
     - Add Placed order
     - Import orders in bulk
-- Emails <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Emails <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Emails/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails" target="_blank">doc api</a>
     - Create e-mail from template
     - Create new E-mail
     - Get E-mails
@@ -198,26 +198,26 @@ https://app.smartemailing.cz/docs/api/v3/index.html
     - Delete event
     - Get events
     - Get single event
-- Import <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Import <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Import/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Import" target="_blank">doc api</a>
     - Import contacts
-- Newsletter <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Newsletter <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Newsletter/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Newsletter" target="_blank">doc api</a>
     - Create newsletter
-- Processing purposes <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Processing purposes <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Processing-purposes/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Processing_purposes" target="_blank">doc api</a>
     - Create new Processing purpose
     - Get Processing purpose connections
     - Get Processing purposes
     - Revoke Processing purpose connection
-- Scoring <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Scoring <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Scoring/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Scoring" target="_blank">doc api</a>
     - Scoring result history for all contacts
-- Stats <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Stats <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Stats/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Stats" target="_blank">doc api</a>
     - Get campaign sent stats
     - Get newsletter stats summaries
-- Transactional emails <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Transactional emails <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Transactional-emails/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Transactional_emails" target="_blank">doc api</a>
     - Get transactional email ids
-- Web Forms <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Web Forms <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Web-forms/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Web_Forms" target="_blank">doc api</a>
     - Get all Web Form ids and names
     - Get single Web Form structure
-- Webhooks <a href="">Code Examples</a> | <a href="" target="_blank">Api DOC</a>
+- Webhooks <a href="https://github.com/keltuo/php-smartemailing/blob/main/examples/Webhooks/" target="_blank">Code Examples</a> | <a href="https://app.smartemailing.cz/docs/api/v3/index.html#api-Webhooks" target="_blank">doc api</a>
     - Create new Webhook
     - Delete Webhook
     - Get Webhooks

@@ -5,7 +5,7 @@ namespace SmartEmailing\Test\Unit\Api;
 
 use GuzzleHttp\Psr7\Response;
 use SmartEmailing\Api\Model\Bag\ContactBag;
-use SmartEmailing\Api\Model\Contact\Contact;
+use SmartEmailing\Api\Model\Contact\ContactDetail;
 use SmartEmailing\Api\Model\Contact\ContactList;
 use SmartEmailing\Api\Model\Contact\CustomField;
 use SmartEmailing\Api\Model\Contact\Purpose;
@@ -33,7 +33,7 @@ class ImportTest extends TestCase
             "double_opt_in_map": []
         }';
 
-        $contact = (new Contact('martin@smartemailing.cz'))
+        $contact = (new ContactDetail('martin@smartemailing.cz'))
             ->setName('Martin');
         $contact->getContactListBag()
             ->add(new ContactList(1, ContactList::CONFIRMED))
@@ -48,7 +48,7 @@ class ImportTest extends TestCase
             ->add(new Purpose(3, '2018-01-11 10:30:00', '2023-01-11 10:30:00'))
             ;
 
-        $contact1 = (new Contact('martin1@smartemailing.cz'))
+        $contact1 = (new ContactDetail('martin1@smartemailing.cz'))
             ->setName('Martin');
         $contact1->getContactListBag()
             ->add(new ContactList(1, ContactList::CONFIRMED))
@@ -94,6 +94,8 @@ class ImportTest extends TestCase
             $response->getStatus()
         );
         $this->assertTrue($response->isSuccess());
+
+        $this->assertNull($api->contacts(new Import(new ContactBag())));
     }
 
     protected function getExpectedRequest(): string

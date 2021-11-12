@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model\Bag;
 
-use SmartEmailing\Api\Model\Contact\Contact;
+use SmartEmailing\Api\Model\Contact\ContactDetail;
 
 class ContactBag extends AbstractBag
 {
-    public function add(Contact $model): ContactBag
+    public function add(ContactDetail $model): ContactBag
     {
         $this->insertEntry($model);
         return $this;
@@ -15,8 +15,8 @@ class ContactBag extends AbstractBag
 
     public function create(
         string $emailAddress
-    ): Contact {
-        $model = (new Contact($emailAddress));
+    ): ContactDetail {
+        $model = (new ContactDetail($emailAddress));
         $this->add($model);
         return $model;
     }

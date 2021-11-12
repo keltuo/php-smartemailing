@@ -12,7 +12,7 @@ class SingleEmail extends AbstractSearch
     public const TEXT_BODY = 'textbody';
     public const CREATED = 'created';
 
-    protected function getSelectAllowedValues(): array
+    protected function getDefaultFields(): array
     {
         return [
             self::ID,
@@ -22,5 +22,10 @@ class SingleEmail extends AbstractSearch
             self::TEXT_BODY,
             self::CREATED,
         ];
+    }
+
+    protected function getSelectAllowedValues(): array
+    {
+        return $this->getDefaultFields();
     }
 }
