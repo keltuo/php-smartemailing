@@ -15,7 +15,7 @@ abstract class AbstractBag implements JsonSerializable, Stringable
 
     public function get(int|string $index, mixed $default = null): mixed
     {
-        return isset($this->items[$index]) ? $this->items[$index] : $default;
+        return $this->items[$index] ?? $default;
     }
 
     public function getItems(): array
@@ -23,14 +23,36 @@ abstract class AbstractBag implements JsonSerializable, Stringable
         return $this->items;
     }
 
-    public function setItems(array $items): AbstractBag
+    public function setItems(array $items): self
     {
         foreach ($items as $item) {
             if ($item instanceof ModelInterface) {
                 $this->insertEntry($item);
             }
         }
+
         return $this;
+    }
+
+    public function isEmpty(): bool
+    {
+        return empty($this->items);
+    }
+
+    public function count(): int
+    {
+        return \count($this->items);
+    }
+
+    public function toArray(): array
+    {
+        return $this->items;
+    }
+
+    #[Pure]
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
     }
 
     protected function insertEntry(ModelInterface $entry): bool
@@ -47,35 +69,11 @@ abstract class AbstractBag implements JsonSerializable, Stringable
 
     protected function checkEntry(string $property): bool
     {
-        if (isset($this->idMap[$property])) {
-            return true;
-        }
-        return false;
-    }
-
-    public function isEmpty(): bool
-    {
-        return empty($this->items);
-    }
-
-    public function count(): int
-    {
-        return count($this->items);
+        return isset($this->idMap[$property]);
     }
 
     public function __toString(): string
     {
-        return (string)json_encode($this);
-    }
-
-    public function toArray(): array
-    {
-        return $this->items;
-    }
-
-    #[Pure]
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
+        return (string)\json_encode($this);
     }
 }

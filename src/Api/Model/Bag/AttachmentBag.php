@@ -16,7 +16,7 @@ class AttachmentBag extends AbstractBag
     public function create(
         string $fileName,
         string $contentType,
-        string $data
+        string $data,
     ): Attachment {
         $model = (new Attachment($fileName, $contentType, $data));
         $this->add($model);

@@ -12,22 +12,19 @@ class SenderCredentials extends AbstractModel
      * From e-mail address of opt-in campaign
      */
     protected string $from;
+
     /**
-     * Contact:  From name of opt-in campaign
+     * Contact: From name of opt-in campaign
      * Email: Sender's name as displayed in From header
      */
     protected string $senderName;
+
     /**
      * Contact: Reply-To e-mail address in opt-in campaign
      * Email: E-mail address displayed in Reply-To header
      */
     protected string $replyTo;
 
-    /**
-     * @param string $from
-     * @param string $senderName
-     * @param string $replyTo
-     */
     public function __construct(string $from, string $senderName, string $replyTo)
     {
         $this->setFrom($from);
@@ -74,7 +71,7 @@ class SenderCredentials extends AbstractModel
         [
         'from' => "string",
         'sender_name' => "string",
-        'reply_to' => "string"
+        'reply_to' => "string",
         ]
     )]
     public function toArray(): array
@@ -82,7 +79,7 @@ class SenderCredentials extends AbstractModel
         return [
             'from' => $this->getFrom(),
             'sender_name' => $this->getSenderName(),
-            'reply_to' => $this->getReplyTo()
+            'reply_to' => $this->getReplyTo(),
         ];
     }
 }

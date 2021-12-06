@@ -19,69 +19,80 @@ class ContactDetail extends AbstractModel implements ModelInterface
      * E-mail address of imported contact. This is the only required field.
      */
     protected string $emailAddress;
+
     /**
      * First name
      */
     protected ?string $name = null;
 
     protected ?string $surname = null;
+
     /**
      * Titles before name
      */
-    protected ?string  $titlesBefore = null;
+    protected ?string $titlesBefore = null;
+
     /**
      * Titles after name
      */
-    protected ?string  $titlesAfter = null;
+    protected ?string $titlesAfter = null;
 
-    protected ?string  $salutation = null;
+    protected ?string $salutation = null;
 
-    protected ?string  $company = null;
+    protected ?string $company = null;
 
-    protected ?string  $street = null;
+    protected ?string $street = null;
 
-    protected ?string  $town = null;
+    protected ?string $town = null;
 
-    protected ?string  $postalCode = null;
+    protected ?string $postalCode = null;
 
-    protected ?string  $country = null;
+    protected ?string $country = null;
 
-    protected ?string  $cellphone = null;
+    protected ?string $cellphone = null;
 
-    protected ?string  $phone = null;
+    protected ?string $phone = null;
 
-    protected ?string  $language = null;
+    protected ?string $language = null;
+
     /**
      * Custom notes
      */
-    protected ?string  $notes = null;
+    protected ?string $notes = null;
+
     /**
      * Allowed values: "M,F,NULL"
      */
-    protected ?string  $gender = null;
+    protected ?string $gender = null;
+
     /**
      * 0 if Contact is OK, 1 if Contact does not want to receive any of your e-mails anymore. This flag will stop
      * further campaigns. Be careful, setting this value to 1 will also un-subscribe contact from all lists. It is
      * recommended not to send this parameter at all if you do not know what you are doing.
      */
     protected ?int $blacklisted = null;
+
     /**
      * Date of Contact's nameday in YYYY-MM-DD 00:00:00 format
      */
-    protected ?string  $nameDay = null;
+    protected ?string $nameDay = null;
+
     /**
      * Date of Contact's birthday in YYYY-MM-DD 00:00:00 format
      */
-    protected ?string  $birthday = null;
+    protected ?string $birthday = null;
+
     /**
      * Contact lists presence of imported contacts. Any contact list presence unlisted in imported data will be
      * untouched. Unsubscribed contacts will stay unsubscribed if settings.preserve_unsubscribed=1
      */
-    protected ContactListBag  $contactListBag;
+    protected ContactListBag $contactListBag;
+
     /**
      * Custom fields belonging to contact Custom fields unlisted in imported data will be untouched.
      */
     protected CustomFieldBag $customFieldBag;
+
     /**
      * Processing purposes assigned to contact.
      * Every purpose may be assigned multiple times for different time intervals.
@@ -89,9 +100,6 @@ class ContactDetail extends AbstractModel implements ModelInterface
      */
     protected PurposeBag $purposeBag;
 
-    /**
-     * @param string $emailAddress
-     */
     public function __construct(string $emailAddress)
     {
         $this->setEmailAddress($emailAddress);
@@ -288,7 +296,6 @@ class ContactDetail extends AbstractModel implements ModelInterface
         return $this;
     }
 
-
     public function setPhone(?string $phone): ContactDetail
     {
         $this->phone = $phone;
@@ -300,7 +307,6 @@ class ContactDetail extends AbstractModel implements ModelInterface
         $this->language = $language;
         return $this;
     }
-
 
     public function setNotes(?string $notes): ContactDetail
     {
@@ -330,7 +336,7 @@ class ContactDetail extends AbstractModel implements ModelInterface
     {
         AllowedTypeException::check(
             $gender, [
-            'M', 'F', null
+            'M', 'F', null,
             ]
         );
 
@@ -345,7 +351,7 @@ class ContactDetail extends AbstractModel implements ModelInterface
      */
     public function setBlacklisted(bool $blacklisted = true): ContactDetail
     {
-        $this->blacklisted = intval($blacklisted);
+        $this->blacklisted = \intval($blacklisted);
         return $this;
     }
 
@@ -359,7 +365,7 @@ class ContactDetail extends AbstractModel implements ModelInterface
     }
 
     /**
-     * Date of Contact's birthday in YYYY-MM-DD 00:00:00 format  or different format
+     * Date of Contact's birthday in YYYY-MM-DD 00:00:00 format or different format
      */
     public function setBirthday(string $birthday): ContactDetail
     {
@@ -369,7 +375,7 @@ class ContactDetail extends AbstractModel implements ModelInterface
 
     public function toArray(): array
     {
-        return array_filter(
+        return \array_filter(
             [
             'emailaddress' => $this->getEmailAddress(),
             'name' => $this->getName(),
@@ -392,10 +398,10 @@ class ContactDetail extends AbstractModel implements ModelInterface
             'birthday' => $this->getBirthday(),
             'contactlists' => $this->getContactListBag(),
             'customfields' => $this->getCustomFieldBag(),
-            'purposes' => $this->getPurposeBag()
-            ], fn ($item) => (
-            (!is_object($item) && !empty($item))
-            || (is_object($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
+            'purposes' => $this->getPurposeBag(),
+            ], static fn ($item) => (
+            (!\is_object($item) && !empty($item))
+            || (\is_object($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
             )
         );
     }

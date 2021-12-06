@@ -22,7 +22,7 @@ class CustomFields extends SingleCustomFields
     protected function getExpandAllowedValues(): array
     {
         return [
-            self::CUSTOM_FIELD_OPTIONS
+            self::CUSTOM_FIELD_OPTIONS,
         ];
     }
 }

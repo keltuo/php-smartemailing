@@ -22,7 +22,7 @@ class Contacts extends SingleContact
     protected function getExpandAllowedValues(): array
     {
         return [
-            self::CUSTOM_FIELDS
+            self::CUSTOM_FIELDS,
         ];
     }
 }

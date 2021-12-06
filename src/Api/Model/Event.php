@@ -3,31 +3,29 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use SmartEmailing\Util\Helpers;
 
 class Event extends AbstractModel implements ModelInterface
 {
-
     /**
      * Email address to trigger the event for, will be created if necessary. 
      */
     protected string $emailAddress;
+
     /**
      * Name of the event. All event nodes that listen for this event name will get triggered.
      */
     protected string $name;
+
     /**
      * Event payload. This payload is available throughout the entire contact's walkthrough. 
      */
     protected array $payload = [];
 
     /**
-     * @param string $emailAddress
-     * @param string $name
-     * @param array  $payload
+     * @param array $payload
      */
     public function __construct(string $emailAddress, string $name, array $payload)
     {
@@ -80,7 +78,7 @@ class Event extends AbstractModel implements ModelInterface
         [
         'emailaddress' => "string",
         'name' => "string",
-        'payload' => "array"
+        'payload' => "array",
         ]
     )]
     public function toArray(): array

@@ -12,6 +12,7 @@ use SmartEmailing\Util\Helpers;
 class Purpose extends AbstractModel implements ModelInterface
 {
     protected int $id;
+
     /**
      * Date and time since processing purpose is valid in YYYY-MM-DD HH:MM:SS format. If empty, current date
      * and time will be used.
@@ -26,11 +27,6 @@ class Purpose extends AbstractModel implements ModelInterface
      */
     protected ?string $validTo;
 
-    /**
-     * @param int         $id
-     * @param string|null $validFrom
-     * @param string|null $validTo
-     */
     public function __construct(int $id, ?string $validFrom = null, ?string $validTo = null)
     {
         $this->id = $id;
@@ -46,7 +42,7 @@ class Purpose extends AbstractModel implements ModelInterface
 
     public function setId(mixed $id): Purpose
     {
-        $this->id = intval($id);
+        $this->id = \intval($id);
         return $this;
     }
 
@@ -56,7 +52,7 @@ class Purpose extends AbstractModel implements ModelInterface
     public function setValidFrom(?string $validFrom): Purpose
     {
 
-        $this->validFrom = is_null($validFrom) ? null : Helpers::formatDate($validFrom);
+        $this->validFrom = \is_null($validFrom) ? null : Helpers::formatDate($validFrom);
         return $this;
     }
 
@@ -65,7 +61,7 @@ class Purpose extends AbstractModel implements ModelInterface
      */
     public function setValidTo(?string $validTo): Purpose
     {
-        $this->validTo = is_null($validTo) ? null : Helpers::formatDate($validTo);
+        $this->validTo = \is_null($validTo) ? null : Helpers::formatDate($validTo);
         return $this;
     }
 
@@ -88,17 +84,17 @@ class Purpose extends AbstractModel implements ModelInterface
         [
         'id' => "int",
         'valid_from' => "null|string",
-        'valid_to' => "null|string"
+        'valid_to' => "null|string",
         ]
     )]
     public function toArray(): array
     {
-        return array_filter(
+        return \array_filter(
             [
             'id' => $this->getId(),
             'valid_from' => $this->getValidFrom(),
-            'valid_to' => $this->getValidTo()
-            ], fn ($item) => !is_null($item)
+            'valid_to' => $this->getValidTo(),
+            ], static fn ($item) => !\is_null($item)
         );
     }
 }

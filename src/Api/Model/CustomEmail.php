@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use SmartEmailing\Api\Model\Bag\TaskBag;
 
@@ -13,10 +12,12 @@ class CustomEmail extends AbstractModel
      * Sender's credentials for this request 
      */
     protected SenderCredentials $senderCredentials;
+
     /**
      * Tag used for email grouping 
      */
     protected string $tag;
+
     /**
      * Id of E-mail or E-mail template to send.
      * All dynamic fields in E-mail will be customized per contact.
@@ -25,24 +26,17 @@ class CustomEmail extends AbstractModel
 
     protected TaskBag $taskBag;
 
-    /**
-     * @param SenderCredentials $senderCredentials
-     * @param string            $tag
-     * @param int               $emailId
-     * @param TaskBag|null      $taskBag
-     */
     public function __construct(
         SenderCredentials $senderCredentials,
         string $tag,
         int $emailId,
-        ?TaskBag $taskBag = null
+        ?TaskBag $taskBag = null,
     ) {
         $this->setSenderCredentials($senderCredentials);
         $this->setTag($tag);
         $this->setEmailId($emailId);
-        $this->setTaskBag(is_null($taskBag) ? new TaskBag() : $taskBag);
+        $this->setTaskBag(\is_null($taskBag) ? new TaskBag() : $taskBag);
     }
-
 
     public function getTag(): string
     {
@@ -94,7 +88,7 @@ class CustomEmail extends AbstractModel
         'tag' => "string",
         'email_id' => "int",
         'tasks' => "\SmartEmailing\Api\Bag\TaskBag",
-        'sender_credentials' => "\SmartEmailing\Api\Model\SenderCredentials"
+        'sender_credentials' => "\SmartEmailing\Api\Model\SenderCredentials",
         ]
     )]
     public function toArray(): array
@@ -103,7 +97,7 @@ class CustomEmail extends AbstractModel
             'tag' => $this->getTag(),
             'email_id' => $this->getEmailId(),
             'tasks' => $this->getTaskBag(),
-            'sender_credentials' => $this->getSenderCredentials()
+            'sender_credentials' => $this->getSenderCredentials(),
         ];
     }
 }

@@ -9,48 +9,58 @@ class Newsletter extends AbstractModel
      * Id of email to send
      */
     protected int $emailId;
+
     /**
      * Ids of contactlists to send newsletter to.
      */
     protected array $contactListIds = [];
+
     /**
      * Ids of contactlists to exclude from sending.
      */
     protected array $excludeContactListIds = [];
+
     /**
      * Internal newsletter name. Email name will be used if left empty.
      */
     protected ?string $name = null;
+
     /**
      * When should sending start in YYYY-MM-DD 00:00:00 format.
      * Sending will be started immediately if left empty.
      */
     protected ?string $start = null;
+
     /**
      * Should statistics be measured.
      */
     protected bool $measureStats = true;
+
     /**
      * Should newsletter be send to contact during the time it most often reads emails.
      */
     protected bool $sendOnPreferredTime = false;
+
     /**
      * Sender email address.
      * Sender email, name and replyto needs to be set, otherwise contactlist settings will be used.
      * Must be a confirmed email.
      */
     protected ?string $senderEmail = null;
+
     /**
      * Sender name.
      * Sender email, name and replyto needs to be set, otherwise contactlist settings will be used.
      */
     protected ?string $senderName = null;
+
     /**
      * Reply to email address.
      * Sender email, name and replyto needs to be set, otherwise contactlist settings will be used.
      * Must be a confirmed email.
      */
     protected ?string $replyTo = null;
+
     /**
      * GA settings.
      */
@@ -60,7 +70,6 @@ class Newsletter extends AbstractModel
     protected ?string $utmContent = null;
 
     /**
-     * @param int   $emailId
      * @param array $contactListIds
      */
     public function __construct(
@@ -227,7 +236,7 @@ class Newsletter extends AbstractModel
 
     public function toArray(): array
     {
-        return array_filter([
+        return \array_filter([
             'email_id' => $this->getEmailId(),
             'contactlists' => $this->getContactListIds(),
             'excluded_contactlists' => $this->getExcludeContactListIds(),
@@ -242,6 +251,6 @@ class Newsletter extends AbstractModel
             'utm_medium' => $this->getUtmMedium(),
             'utm_campaign' => $this->getUtmCampaign(),
             'utm_content' => $this->getUtmContent(),
-        ], fn ($item) => !empty($item));
+        ], static fn ($item) => !empty($item));
     }
 }

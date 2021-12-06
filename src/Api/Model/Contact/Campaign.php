@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace SmartEmailing\Api\Model\Contact;
 
 use JetBrains\PhpStorm\ArrayShape;
-use JetBrains\PhpStorm\Pure;
 use SmartEmailing\Api\Model\AbstractModel;
 use SmartEmailing\Api\Model\Bag\ReplaceBag;
 
@@ -16,6 +15,7 @@ class Campaign extends AbstractModel
     protected int $emailId;
 
     protected SenderCredentials $senderCredentials;
+
     /**
      * URL of thank-you page where contact will be redirected after clicking at confirmation link.
      * Link can be customized by contact fields e.g. https://example.com/?name={{ df_name }}.
@@ -27,17 +27,12 @@ class Campaign extends AbstractModel
 
     protected ReplaceBag $replaceBag;
 
-    /**
-     * @param int               $emailId
-     * @param SenderCredentials $senderCredentials
-     */
     public function __construct(int $emailId, SenderCredentials $senderCredentials)
     {
         $this->setEmailId($emailId);
         $this->setSenderCredentials($senderCredentials);
         $this->setReplaceBag(new ReplaceBag());
     }
-
 
     public function getEmailId(): int
     {
@@ -100,19 +95,19 @@ class Campaign extends AbstractModel
         'sender_credentials' => "\SmartEmailing\Api\Model\Contact\SenderCredentials",
         'confirmation_thank_you_page_url' => "null|string",
         'valid_to' => "null|string",
-        'replace' => "\SmartEmailing\Api\Model\Bag\ReplaceBag"
+        'replace' => "\SmartEmailing\Api\Model\Bag\ReplaceBag",
         ]
     )]
     public function toArray(): array
     {
-        return array_filter(
+        return \array_filter(
             [
             'email_id' => $this->getEmailId(),
             'sender_credentials' => $this->getSenderCredentials(),
             'confirmation_thank_you_page_url' => $this->getConfirmationThankYouPageUrl(),
             'valid_to' => $this->getValidTo(),
-            'replace' => $this->getReplaceBag()
-            ], fn ($item) => !is_null($item)
+            'replace' => $this->getReplaceBag(),
+            ], static fn ($item) => !\is_null($item)
         );
     }
 }

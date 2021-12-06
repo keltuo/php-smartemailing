@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model\Contact;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use SmartEmailing\Api\Model\AbstractModel;
@@ -17,15 +16,12 @@ class ContactList extends AbstractModel implements ModelInterface
     public const UNSUBSCRIBED = 'unsubscribed';
 
     protected int $id;
+
     /**
      * Contact's status in Contactlist. Allowed values: "confirmed", "unsubscribed", "removed"
      */
     protected string $status = self::CONFIRMED;
 
-    /**
-     * @param int    $id
-     * @param string $status
-     */
     public function __construct(int $id, string $status)
     {
         $this->setId($id);
@@ -41,7 +37,7 @@ class ContactList extends AbstractModel implements ModelInterface
 
     public function setId(int $id): ContactList
     {
-        $this->id = intval($id);
+        $this->id = \intval($id);
         return $this;
     }
 
@@ -55,7 +51,7 @@ class ContactList extends AbstractModel implements ModelInterface
             [
                 self::CONFIRMED,
                 self::UNSUBSCRIBED,
-                self::REMOVED
+                self::REMOVED,
             ]
         );
         $this->status = $status;
@@ -75,14 +71,14 @@ class ContactList extends AbstractModel implements ModelInterface
     #[ArrayShape(
         [
         'id' => "int",
-        'status' => "string"
+        'status' => "string",
         ]
     )]
     public function toArray(): array
     {
         return [
             'id' => $this->getId(),
-            'status' => $this->getStatus()
+            'status' => $this->getStatus(),
         ];
     }
 }

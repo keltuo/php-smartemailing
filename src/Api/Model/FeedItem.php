@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
@@ -13,11 +12,6 @@ class FeedItem extends AbstractModel implements ModelInterface
     protected string $feedName;
     protected int $quantity = 0;
 
-    /**
-     * @param string $id
-     * @param string $feedName
-     * @param int    $quantity
-     */
     public function __construct(string $id, string $feedName, int $quantity = 0)
     {
         $this->setId($id);
@@ -68,7 +62,7 @@ class FeedItem extends AbstractModel implements ModelInterface
         [
         'item_id' => "string",
         'feed_name' => "string",
-        'quantity' => "int"
+        'quantity' => "int",
         ]
     )]
     public function toArray(): array

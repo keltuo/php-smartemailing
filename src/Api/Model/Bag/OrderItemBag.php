@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model\Bag;
 
-
 use SmartEmailing\Api\Model\OrderItem;
 use SmartEmailing\Api\Model\Price;
 
@@ -20,7 +19,7 @@ class OrderItemBag extends AbstractBag
         string $name,
         Price $price,
         int $quantity,
-        string $url
+        string $url,
     ): OrderItem {
         $model = new OrderItem($id, $name, $price, $quantity, $url);
         $this->add($model);

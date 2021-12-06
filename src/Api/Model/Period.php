@@ -21,15 +21,12 @@ class Period extends AbstractModel
      * Allowed values: see getAllowedUnits()
      */
     protected string $unit;
+
     /**
      * Period value, must be integer 
      */
     protected int $value;
 
-    /**
-     * @param string $unit
-     * @param int    $value
-     */
     public function __construct(string $unit, int $value)
     {
         $this->setUnit($unit);
@@ -62,14 +59,14 @@ class Period extends AbstractModel
     #[ArrayShape(
         [
         'unit' => "string",
-        'value' => "int"
+        'value' => "int",
         ]
     )]
     public function toArray(): array
     {
         return [
             'unit' => $this->getUnit(),
-            'value' => $this->getValue()
+            'value' => $this->getValue(),
         ];
     }
 
@@ -78,7 +75,7 @@ class Period extends AbstractModel
         return [
             self::DAYS,
             self::MONTHS,
-            self::YEARS
+            self::YEARS,
         ];
     }
 }

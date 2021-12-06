@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 
 class MessageContent extends AbstractModel
@@ -12,22 +11,19 @@ class MessageContent extends AbstractModel
      * Subject of email 
      */
     protected string $subject;
+
     /**
      * HTML contents of email
      * All dynamic fields in E-mail will be customized per contact.
      */
     protected string $htmlBody;
+
     /**
      * Text contents of email
      * All dynamic fields in E-mail will be customized per contact.
      */
     protected string $textBody;
 
-    /**
-     * @param string $subject
-     * @param string $htmlBody
-     * @param string $textBody
-     */
     public function __construct(string $subject, string $htmlBody, string $textBody)
     {
         $this->setSubject($subject);
@@ -72,7 +68,7 @@ class MessageContent extends AbstractModel
         [
         'subject' => "string",
         'html_body' => "string",
-        'text_body' => "string"
+        'text_body' => "string",
         ]
     )]
     public function toArray(): array
@@ -80,7 +76,7 @@ class MessageContent extends AbstractModel
         return [
             'subject' => $this->getSubject(),
             'html_body' => $this->getHtmlBody(),
-            'text_body' => $this->getTextBody()
+            'text_body' => $this->getTextBody(),
         ];
     }
 }

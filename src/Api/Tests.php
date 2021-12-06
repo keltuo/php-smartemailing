@@ -3,12 +3,11 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api;
 
-
-use SmartEmailing\Api\Model\Response\LoginResponse;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
+use SmartEmailing\Api\Model\Response\LoginResponse;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Tests
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Tests
  * @package SmartEmailing\Api
  */
 class Tests extends AbstractApi

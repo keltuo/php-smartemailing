@@ -16,7 +16,7 @@ class CustomFieldBag extends AbstractBag
     public function create(
         int $id,
         string $value,
-        array $options = []
+        array $options = [],
     ): CustomField {
         $model = new CustomField($id, $options, $value);
         $this->add($model);

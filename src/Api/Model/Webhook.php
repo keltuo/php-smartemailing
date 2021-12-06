@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use SmartEmailing\Exception\AllowedTypeException;
 
@@ -22,6 +21,7 @@ class Webhook extends AbstractModel
      * The URL you want to be called when event is triggered.
      */
     protected string $targetUrl;
+
     /**
      * An event you want to listen to.
      * Allowed values: "new_contact, delivery_status, updated_contact, unsubscribed_contact,
@@ -29,10 +29,6 @@ class Webhook extends AbstractModel
      */
     protected string $event;
 
-    /**
-     * @param string $targetUrl
-     * @param string $event
-     */
     public function __construct(string $targetUrl, string $event)
     {
         $this->setTargetUrl($targetUrl);
@@ -77,7 +73,7 @@ class Webhook extends AbstractModel
     #[ArrayShape(
         [
         'target_url' => "string",
-        'event' => "string"
+        'event' => "string",
         ]
     )]
     public function toArray(): array

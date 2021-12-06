@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\Pure;
-use function is_null;
 
 trait PropertyTrait
 {
@@ -18,7 +16,7 @@ trait PropertyTrait
 
     protected function setPropertyValue(string $key, ?string $propertyName = null): self
     {
-        if (is_null($propertyName)) {
+        if (\is_null($propertyName)) {
             $propertyName = $key;
         }
 
@@ -29,7 +27,7 @@ trait PropertyTrait
     #[Pure]
     protected function getPropertyValue(object $object, string $key, mixed $default = null): mixed
     {
-        if (property_exists($object, $key)) {
+        if (\property_exists($object, $key)) {
             return $object->{$key};
         }
 

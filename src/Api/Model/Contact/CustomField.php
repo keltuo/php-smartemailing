@@ -29,9 +29,7 @@ class CustomField extends AbstractModel implements ModelInterface
     /**
      * .
      *
-     * @param int    $id
-     * @param array  $options
-     * @param string $value
+     * @param array $options
      */
     public function __construct(int $id, array $options = [], string $value = '')
     {
@@ -60,7 +58,7 @@ class CustomField extends AbstractModel implements ModelInterface
 
     public function addOption(mixed $customFiledId): CustomField
     {
-        $this->options[] = intval($customFiledId);
+        $this->options[] = \intval($customFiledId);
         return $this;
     }
 
@@ -89,17 +87,17 @@ class CustomField extends AbstractModel implements ModelInterface
         [
         'id' => "int",
         'options' => "array",
-        'value' => "string"
+        'value' => "string",
         ]
     )]
     public function toArray(): array
     {
-        return array_filter(
+        return \array_filter(
             [
             'id' => $this->getId(),
             'options' => $this->getOptions(),
-            'value' => $this->getValue()
-            ], fn($item) => !empty($item)
+            'value' => $this->getValue(),
+            ], static fn ($item) => !empty($item)
         );
     }
 }

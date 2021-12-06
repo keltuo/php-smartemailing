@@ -6,11 +6,11 @@ namespace SmartEmailing\Api;
 use SmartEmailing\Api\Model\Email;
 use SmartEmailing\Api\Model\EmailTemplate;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
-use SmartEmailing\Api\Model\Search\SingleEmail as SearchSingleEmail;
 use SmartEmailing\Api\Model\Search\Emails as SearchEmails;
+use SmartEmailing\Api\Model\Search\SingleEmail as SearchSingleEmail;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails
  * @package SmartEmailing\Api
  */
 class Emails extends AbstractApi
@@ -34,33 +34,33 @@ class Emails extends AbstractApi
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails-Get_E_mails
      */
-    public function getList(SearchEmails $search = null): Response
+    public function getList(?SearchEmails $search = null): Response
     {
-        $search = $search ?? new SearchEmails();
+        $search ??= new SearchEmails();
         return new Response($this->get('emails', $search->getAsQuery()));
     }
 
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails-Get_confirmation_emails
      */
-    public function getConfirmationList(SearchEmails $search = null): Response
+    public function getConfirmationList(?SearchEmails $search = null): Response
     {
-        $search = $search ?? new SearchEmails();
+        $search ??= new SearchEmails();
         return new Response($this->get('confirmation-emails', $search->getAsQuery()));
     }
 
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Emails-Get_single_E_mail
      */
-    public function getSingle(int $idEmail, SearchSingleEmail $search = null): Response
+    public function getSingle(int $idEmail, ?SearchSingleEmail $search = null): Response
     {
-        $search = $search ?? new SearchSingleEmail();
+        $search ??= new SearchSingleEmail();
         return new Response(
             $this->get(
                 $this->replaceUrlParameters(
                     'emails/:id',
                     [
-                    'id' => $idEmail
+                    'id' => $idEmail,
                     ]
                 ),
                 $search->getAsQuery()

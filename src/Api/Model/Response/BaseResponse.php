@@ -27,8 +27,6 @@ class BaseResponse implements \JsonSerializable, \Stringable
     public const SUCCESS = 'ok';
     public const CREATED = 'created';
 
-    private ?ResponseInterface $response;
-
     protected array $data = [];
 
     protected ?object $meta = null;
@@ -37,24 +35,27 @@ class BaseResponse implements \JsonSerializable, \Stringable
 
     protected string $status = self::ERROR;
 
-    /**
-     * @param ResponseInterface|null $response
-     */
+    private ?ResponseInterface $response;
+
     public function __construct(?ResponseInterface $response = null)
     {
         $this->response = $response;
-        $json = json_decode((string)$response?->getBody());
-        if (is_object($json) && property_exists($json, 'data')) {
+        $json = \json_decode((string)$response?->getBody());
+
+        if (\is_object($json) && \property_exists($json, 'data')) {
             $this->data = (array)$json->data;
         }
-        if (is_object($json) && property_exists($json, 'meta')) {
+
+        if (\is_object($json) && \property_exists($json, 'meta')) {
             $this->meta = empty($json->meta) ? null : $json->meta;
         }
-        if (is_object($json) && property_exists($json, 'status')) {
+
+        if (\is_object($json) && \property_exists($json, 'status')) {
             $this->json = $json;
             $this->setPropertyValue('status')
                 ->setPropertyValue('message');
         }
+
         $this->status = match ($this->getStatusCode()) {
             self::HTTP_SUCCESS_CODE, 202, 203, self::HTTP_NOT_CONTENT_CODE, 205, 206, 207 => self::SUCCESS,
             self::HTTP_CREATED_CODE => self::CREATED,
@@ -104,9 +105,10 @@ class BaseResponse implements \JsonSerializable, \Stringable
 
     public function getStatusCode(): int
     {
-        if (is_null($this->getResponse())) {
+        if (\is_null($this->getResponse())) {
             return self::HTTP_ERROR_CODE;
         }
+
         return $this->getResponse()->getStatusCode();
     }
 
@@ -116,7 +118,7 @@ class BaseResponse implements \JsonSerializable, \Stringable
         'status' => "string",
         'meta' => "null|object",
         'data' => "array",
-        'message' => "string"
+        'message' => "string",
         ]
     )]
     public function toArray(): array
@@ -126,17 +128,17 @@ class BaseResponse implements \JsonSerializable, \Stringable
             'status' => $this->getStatus(),
             'meta' => $this->getMeta(),
             'data' => $this->getData(),
-            'message' => $this->getMessage()
+            'message' => $this->getMessage(),
         ];
-    }
-
-    public function __toString(): string
-    {
-        return (string)json_encode($this);
     }
 
     public function jsonSerialize(): array
     {
         return $this->toArray();
+    }
+
+    public function __toString(): string
+    {
+        return (string)\json_encode($this);
     }
 }

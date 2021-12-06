@@ -35,7 +35,7 @@ class SmartEmailing
 
     protected static SmartEmailing $instance;
 
-    public function __construct(string $username, string $apiKey, string $baseUrl = null)
+    public function __construct(string $username, string $apiKey, ?string $baseUrl = null)
     {
         $this->client = new Client(
             [
@@ -43,8 +43,8 @@ class SmartEmailing
                 'base_uri' => $baseUrl ?? $this->baseUrl,
                 'headers' => [
                     'Accept' => self::DOCUMENT_TYPE,
-                    'User-Agent' => self::USER_AGENT
-                ]
+                    'User-Agent' => self::USER_AGENT,
+                ],
             ]
         );
     }

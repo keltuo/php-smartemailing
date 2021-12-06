@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
@@ -13,10 +12,6 @@ class Attribute extends AbstractModel implements ModelInterface
 
     protected string $value;
 
-    /**
-     * @param string $name
-     * @param string $value
-     */
     public function __construct(string $name, string $value)
     {
         $this->setName($name);
@@ -54,14 +49,14 @@ class Attribute extends AbstractModel implements ModelInterface
     #[ArrayShape(
         [
         'name' => "string",
-        'value' => "string"
+        'value' => "string",
         ]
     )]
     public function toArray(): array
     {
         return [
             'name' => $this->getName(),
-            'value' => $this->getValue()
+            'value' => $this->getValue(),
         ];
     }
 }

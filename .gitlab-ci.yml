@@ -1,47 +1,70 @@
 stages:
-    - prepare
-    - test
-    - deploy
+  - prepare
+  - test
+  - prepare-deploy
+  - deploy
 
 cache:
   paths:
     - vendor
 
-composer:
-  image: composer:1.10.15
+composer-no-dev:
+  stage: prepare-deploy
+  image: composer
+  script:
+    - composer install --no-dev --optimize-autoloader --prefer-dist --no-progress
+  only:
+    - main
+
+composer-dev:
   stage: prepare
+  image: composer
   script:
     - composer install --optimize-autoloader --prefer-dist --no-progress
   only:
     - main
 
+unit-test:php8:
+  extends:
+    - .tests
+  script:
+    - php -dxdebug.mode=coverage vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
+  tags:
+    - docker
 
-test:php8:
-    stage: test
-    image: php:8-cli
-    dependencies:
-        - composer
-    before_script:
-        - apt-get update -yqq
-        - apt-get install -yqq git
-        # Install Xdebug
-        - pecl install xdebug
-        - docker-php-ext-enable xdebug
-    only:
-        - main
-    script:
-        - pwd
-        - php -dxdebug.mode=coverage vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
-    tags:
-        - docker
+code-sniffer:php8:
+  extends:
+    - .tests
+  script:
+    - php vendor/bin/phpcs --standard=/var/www/phpcs.xml --report=full --report=phpcs-quality-report.json
+  artifacts:
+    reports:
+      codequality: phpcs-quality-report.json
+  tags:
+    - docker
 
-deploy:
+php-stan:php8:
+  extends:
+    - .tests
+  script:
+    - php vendor/bin/phpstan analyse /var/www/src -c /var/www/phpstan.neon
+  tags:
+    - docker
+
+create-package:
   stage: deploy
   image: docker:stable
   before_script:
-      - apk add --update curl && rm -rf /var/cache/apk/*
+    - apk add --update curl && rm -rf /var/cache/apk/*
   script:
-      - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=$PACKAGE_VERSION "https://$CI_SERVER_HOST/api/v4/projects/$CI_PROJECT_ID/packages/composer"'
+    - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=$PACKAGE_VERSION "https://$CI_SERVER_HOST/api/v4/projects/$CI_PROJECT_ID/packages/composer"'
   only:
     - main
 
+.tests:
+  stage: test
+  image: keltuo/php:8-cli
+  dependencies:
+    - composer-dev
+  only:
+    - main

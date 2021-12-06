@@ -3,20 +3,18 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model\Response;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Psr\Http\Message\ResponseInterface;
 
 class LoginResponse extends BaseResponse
 {
     protected ?int $account_id = null;
 
-    /**
-     * @param ResponseInterface $response
-     */
     public function __construct(ResponseInterface $response)
     {
         parent::__construct($response);
 
-        if (is_object($this->json) && property_exists($this->json, 'status')) {
+        if (\property_exists($this->json, 'status')) {
             $this->setPropertyValue('account_id');
         }
     }
@@ -26,9 +24,17 @@ class LoginResponse extends BaseResponse
         return $this->account_id;
     }
 
-    public function toArray(): array
+    #[ArrayShape(
+	    [
+		    'statusCode' => "int",
+		    'status' => "string",
+		    'meta' => "null|object",
+		    'data' => "array",
+		    'message' => "string",
+	    ]
+    )] public function toArray(): array
     {
-        return array_merge(parent::toArray(), [
+        return \array_merge(parent::toArray(), [
             'account_id' => $this->getAccountId(),
         ]);
     }

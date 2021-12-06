@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
@@ -15,11 +14,6 @@ class Attachment extends AbstractModel implements ModelInterface
 
     protected string $fileData;
 
-    /**
-     * @param string $fileName
-     * @param string $contentType
-     * @param string $fileData
-     */
     public function __construct(string $fileName, string $contentType, string $fileData)
     {
         $this->setFileName($fileName);
@@ -59,6 +53,7 @@ class Attachment extends AbstractModel implements ModelInterface
     {
         return $this->fileData;
     }
+
     public function setFileData(string $fileData): Attachment
     {
         $this->fileData = $fileData;
@@ -69,7 +64,7 @@ class Attachment extends AbstractModel implements ModelInterface
         [
         'file_name' => "string",
         'content_type' => "string",
-        'data_base64' => "string"
+        'data_base64' => "string",
         ]
     )]
     public function toArray(): array
@@ -77,7 +72,7 @@ class Attachment extends AbstractModel implements ModelInterface
         return [
             'file_name' => $this->getFileName(),
             'content_type' => $this->getContentType(),
-            'data_base64' => $this->getFileData()
+            'data_base64' => $this->getFileData(),
         ];
     }
 }

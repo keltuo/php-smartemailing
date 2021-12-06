@@ -13,10 +13,10 @@ class RequestException extends \RuntimeException
 
     public function __construct(
         BaseResponse $response,
-        RequestInterface $request = null,
+        ?RequestInterface $request = null,
         string $message = '',
         int $code = 0,
-        ?\Throwable $exception = null
+        ?\Throwable $exception = null,
     )
     {
         $this->response = $response;

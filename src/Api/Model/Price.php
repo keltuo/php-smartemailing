@@ -9,16 +9,12 @@ class Price extends AbstractModel
 {
     protected float $withoutVat;
     protected float $withVat;
+
     /**
      * Currency code (ISO-4217 three-letter ("Alpha-3")) i.e.: CZK, EUR
      */
     protected string $currency;
 
-    /**
-     * @param float  $withoutVat
-     * @param float  $withVat
-     * @param string $currency
-     */
     public function __construct(float $withoutVat, float $withVat, string $currency)
     {
         $this->setWithoutVat($withoutVat);
@@ -43,25 +39,22 @@ class Price extends AbstractModel
 
     public function setWithoutVat(int|float $withoutVat): Price
     {
-        $this->withoutVat = floatval($withoutVat);
+        $this->withoutVat = \floatval($withoutVat);
         return $this;
     }
 
     public function setWithVat(int|float $withVat): Price
     {
-        $this->withVat = floatval($withVat);
+        $this->withVat = \floatval($withVat);
         return $this;
     }
 
     /**
      * item price currency code (ISO-4217 three-letter ("Alpha-3")) i.e.: CZK, EUR
-     *
-     * @param  string $currency
-     * @return Price
      */
     public function setCurrency(string $currency): Price
     {
-        $this->currency = substr(strtoupper($currency), 0, 3);
+        $this->currency = \substr(\strtoupper($currency), 0, 3);
         return $this;
     }
 
@@ -69,7 +62,7 @@ class Price extends AbstractModel
         [
         'without_vat' => "float",
         'with_vat' => "float",
-        'currency' => "string"
+        'currency' => "string",
         ]
     )]
     public function toArray(): array

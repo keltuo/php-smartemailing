@@ -3,32 +3,26 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use SmartEmailing\Util\Helpers;
 
 class ChangeEmailAddress extends AbstractModel
 {
-
     /**
      * Original e-mail address of existing contact 
      */
     protected string $originalEmailAddress;
+
     /**
      * New e-mail address 
      */
     protected string $newEmailAddress;
 
-    /**
-     * @param string $originalEmailAddress
-     * @param string $newEmailAddress
-     */
     public function __construct(string $originalEmailAddress, string $newEmailAddress)
     {
         $this->setOriginalEmailAddress($originalEmailAddress);
         $this->setNewEmailAddress($newEmailAddress);
     }
-
 
     public function getOriginalEmailAddress(): string
     {
@@ -58,7 +52,7 @@ class ChangeEmailAddress extends AbstractModel
     #[ArrayShape(
         [
         'from' => "string",
-        'to' => "string"
+        'to' => "string",
         ]
     )]
     public function toArray(): array

@@ -12,19 +12,16 @@ class EmailTemplate extends AbstractModel
      * E-mail or E-mail template ID 
      */
     protected int $emailId;
+
     /**
      * Dynamic contents to be replaced 
      */
     protected ReplaceBag $replaceBag;
 
-    /**
-     * @param int             $emailId
-     * @param ReplaceBag|null $replaceBag
-     */
     public function __construct(int $emailId, ?ReplaceBag $replaceBag = null)
     {
         $this->setEmailId($emailId);
-        $this->setReplaceBag(is_null($replaceBag) ? new ReplaceBag() : $replaceBag);
+        $this->setReplaceBag(\is_null($replaceBag) ? new ReplaceBag() : $replaceBag);
     }
 
     public function getEmailId(): int
@@ -52,7 +49,7 @@ class EmailTemplate extends AbstractModel
     #[ArrayShape(
         [
         'email_id' => "int",
-        'replace' => "\SmartEmailing\Api\Model\Bag\ReplaceBag"
+        'replace' => "\SmartEmailing\Api\Model\Bag\ReplaceBag",
         ]
     )]
     public function toArray(): array

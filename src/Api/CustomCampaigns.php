@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api;
 
-
 use SmartEmailing\Api\Model\AbstractModel;
 use SmartEmailing\Api\Model\Bag\TaskBag;
 use SmartEmailing\Api\Model\CustomEmail;
@@ -12,7 +11,7 @@ use SmartEmailing\Api\Model\Sms;
 use SmartEmailing\Api\Model\TransactionalEmail;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Custom_campaigns
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Custom_campaigns
  * @package SmartEmailing\Api
  */
 class CustomCampaigns extends AbstractApi
@@ -49,7 +48,8 @@ class CustomCampaigns extends AbstractApi
         if (!$model->getTaskBag()->isEmpty()) {
             $originalItems = $model->getTaskBag()->getItems();
             $lastResponse = null;
-            foreach (array_chunk($originalItems, $chunkLimit) as $items) {
+
+            foreach (\array_chunk($originalItems, $chunkLimit) as $items) {
                 /**
                  * @var Sms|TransactionalEmail|CustomEmail $chunkModel
                 */
@@ -59,8 +59,10 @@ class CustomCampaigns extends AbstractApi
                 $chunkModel->setTaskBag($taskBag);
                 $lastResponse = new Response($this->post($uri, $chunkModel->toArray()));
             }
+
             return $lastResponse;
         }
+
         return null;
     }
 }

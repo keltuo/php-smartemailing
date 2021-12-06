@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use SmartEmailing\Exception\AllowedTypeException;
 use SmartEmailing\Exception\RequiredFieldException;
@@ -21,16 +20,13 @@ class CustomField extends AbstractModel
      * Customfield name 
      */
     protected string $name;
+
     /**
      * Customfield type,
      * Allowed values: "text", "textarea", "date", "checkbox", "radio", "select"
      */
     protected string $type;
 
-    /**
-     * @param string $name
-     * @param string $type
-     */
     public function __construct(string $name, string $type)
     {
         $this->setName($name);
@@ -69,14 +65,14 @@ class CustomField extends AbstractModel
             self::DATE,
             self::CHECKBOX,
             self::RADIO,
-            self::SELECT
+            self::SELECT,
         ];
     }
 
     #[ArrayShape(
         [
         'name' => "string",
-        'type' => "string"
+        'type' => "string",
         ]
     )]
     public function toArray(): array
@@ -85,7 +81,7 @@ class CustomField extends AbstractModel
             'name' => $this->getName(),
             'type' => $this->getType(),
         ];
-        RequiredFieldException::check(array_keys($data), $data);
+        RequiredFieldException::check(\array_keys($data), $data);
         return $data;
     }
 }

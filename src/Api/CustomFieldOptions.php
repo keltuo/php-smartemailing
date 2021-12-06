@@ -9,7 +9,7 @@ use SmartEmailing\Api\Model\Search\CustomFieldOptions as SearchCustomFieldOption
 use SmartEmailing\Api\Model\Search\SingleCustomFieldOptions as SearchSingleCustomFieldOptions;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options
  * @package SmartEmailing\Api
  */
 class CustomFieldOptions extends AbstractApi
@@ -32,7 +32,7 @@ class CustomFieldOptions extends AbstractApi
                 $this->replaceUrlParameters(
                     'customfield-options/:id',
                     [
-                    'id' => $idCustomFieldOption
+                    'id' => $idCustomFieldOption,
                     ]
                 )
             )
@@ -42,24 +42,24 @@ class CustomFieldOptions extends AbstractApi
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options-Get_Customfield_options
      */
-    public function getList(SearchCustomFieldOptions $search = null): Response
+    public function getList(?SearchCustomFieldOptions $search = null): Response
     {
-        $search = $search ?? new SearchCustomFieldOptions();
+        $search ??= new SearchCustomFieldOptions();
         return new Response($this->get('customfield-options', $search->getAsQuery()));
     }
 
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Customfield_Options-Get_single_Customfield_option
      */
-    public function getSingle(int $idCustomFieldOption, SearchSingleCustomFieldOptions $search = null): Response
+    public function getSingle(int $idCustomFieldOption, ?SearchSingleCustomFieldOptions $search = null): Response
     {
-        $search = $search ?? new SearchSingleCustomFieldOptions();
+        $search ??= new SearchSingleCustomFieldOptions();
         return new Response(
             $this->get(
                 $this->replaceUrlParameters(
                     'customfield-options/:id',
                     [
-                    'id' => $idCustomFieldOption
+                    'id' => $idCustomFieldOption,
                     ]
                 ),
                 $search->getAsQuery()
@@ -77,7 +77,7 @@ class CustomFieldOptions extends AbstractApi
                 $this->replaceUrlParameters(
                     'customfield-options/:id',
                     [
-                    'id' => $idCustomFieldOption
+                    'id' => $idCustomFieldOption,
                     ]
                 ), $customFieldOption->toArray()
             )

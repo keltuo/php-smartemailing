@@ -28,7 +28,7 @@ class Webhooks extends AbstractSearch
             self::TIMEOUT,
             self::LAST_RESPONSE_CODE,
             self::LAST_CALL_TIME,
-            self::ERRORS_IN_ROW
+            self::ERRORS_IN_ROW,
         ];
     }
 

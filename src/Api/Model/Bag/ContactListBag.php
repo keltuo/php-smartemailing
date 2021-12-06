@@ -15,7 +15,7 @@ class ContactListBag extends AbstractBag
 
     public function create(
         int $id,
-        string $status
+        string $status,
     ): ContactList {
         $model = new ContactList($id, $status);
         $this->add($model);

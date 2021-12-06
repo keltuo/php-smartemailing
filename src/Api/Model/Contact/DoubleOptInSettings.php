@@ -13,9 +13,10 @@ class DoubleOptInSettings extends AbstractModel
     public const SEND_MODE_NEW_IN_DATABASE = 'new-in-database';
 
     /**
-     * Double-opt-in e-mail settings  
+     * Double-opt-in e-mail settings 
      */
     protected Campaign $campaign;
+
     /**
      * By adding silence period you will not send double opt-in e-mail to any emailaddress that
      * recieved any opt-in e-mail in specified period.
@@ -34,11 +35,6 @@ class DoubleOptInSettings extends AbstractModel
      */
     protected string $sendToMode;
 
-    /**
-     * @param Campaign           $campaign
-     * @param string             $sendToMode
-     * @param SilencePeriod|null $silencePeriod
-     */
     public function __construct(Campaign $campaign, string $sendToMode, ?SilencePeriod $silencePeriod = null,)
     {
         $this->setCampaign($campaign);
@@ -73,7 +69,6 @@ class DoubleOptInSettings extends AbstractModel
         return $this->sendToMode;
     }
 
-
     public function setSendToMode(string $sendToMode): DoubleOptInSettings
     {
         AllowedTypeException::check($sendToMode, [self::SEND_MODE_ALL, self::SEND_MODE_NEW_IN_DATABASE]);
@@ -85,15 +80,14 @@ class DoubleOptInSettings extends AbstractModel
         [
         'campaign' => "\SmartEmailing\Api\Model\Contact\Campaign",
         'silence_period' => "null|\SmartEmailing\Api\Model\Contact\SilencePeriod",
-        'send_to_mode' => "string"
+        'send_to_mode' => "string",
         ]
     )] public function toArray(): array
     {
         return [
             'campaign' => $this->getCampaign(),
             'silence_period' => $this->getSilencePeriod(),
-            'send_to_mode' => $this->getSendToMode()
+            'send_to_mode' => $this->getSendToMode(),
         ];
     }
-
 }

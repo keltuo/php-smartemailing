@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace SmartEmailing\Api;
 
 use SmartEmailing\Api\Model\ContactList;
-use SmartEmailing\Api\Model\Search\ContactLists as ContactListSearch;
 use SmartEmailing\Api\Model\NewContactList;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
+use SmartEmailing\Api\Model\Search\ContactLists as ContactListSearch;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Contactlists
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contactlists
  * @package SmartEmailing\Api
  */
 class ContactLists extends AbstractApi
@@ -24,7 +24,7 @@ class ContactLists extends AbstractApi
                 $this->replaceUrlParameters(
                     'contactlists/:id/added-contacts',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 )
             )
@@ -49,7 +49,7 @@ class ContactLists extends AbstractApi
                 $this->replaceUrlParameters(
                     'contactlists/:id/distribution',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 )
             )
@@ -59,24 +59,24 @@ class ContactLists extends AbstractApi
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contactlists-Get_Contactlists
      */
-    public function getList(ContactListSearch $search = null): Response
+    public function getList(?ContactListSearch $search = null): Response
     {
-        $search = $search ?? new ContactListSearch();
+        $search ??= new ContactListSearch();
         return new Response($this->get('contactlists', $search->getAsQuery()));
     }
 
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contactlists-Get_single_Contactlist
      */
-    public function getSingle(int $idContactList, ContactListSearch $search = null): Response
+    public function getSingle(int $idContactList, ?ContactListSearch $search = null): Response
     {
-        $search = $search ?? new ContactListSearch();
+        $search ??= new ContactListSearch();
         return new Response(
             $this->get(
                 $this->replaceUrlParameters(
                     'contactlists/:id',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 ),
                 $search->getAsQuery()
@@ -94,7 +94,7 @@ class ContactLists extends AbstractApi
                 $this->replaceUrlParameters(
                     'contactlists/:id/truncate',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 )
             )
@@ -111,7 +111,7 @@ class ContactLists extends AbstractApi
                 $this->replaceUrlParameters(
                     'contactlists/:id',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 ), $contactList->toArray()
             )
@@ -128,7 +128,7 @@ class ContactLists extends AbstractApi
                 $this->replaceUrlParameters(
                     'contactlists/:id/contacts',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 )
             )
@@ -145,7 +145,7 @@ class ContactLists extends AbstractApi
                 $this->replaceUrlParameters(
                     'contactlists/:id/contacts/confirmed',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 )
             )
@@ -162,7 +162,7 @@ class ContactLists extends AbstractApi
                 $this->replaceUrlParameters(
                     'contactlists/:id/contacts/unsubscribed',
                     [
-                    'id' => $idContactList
+                    'id' => $idContactList,
                     ]
                 )
             )

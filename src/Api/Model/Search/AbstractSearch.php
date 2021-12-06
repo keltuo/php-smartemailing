@@ -11,6 +11,9 @@ use function Symfony\Component\String\u;
 
 abstract class AbstractSearch implements JsonSerializable, Stringable
 {
+    public const SORT_ASC = 'asc';
+    public const SORT_DESC = 'desc';
+
     protected const OFFSET = 0;
     protected const MAX_LIMIT = 500;
 
@@ -21,9 +24,6 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
     protected const TYPE_ACTION_TYPE = 'type';
     protected const TYPE_LIMIT = 'limit';
     protected const TYPE_OFFSET = 'offset';
-
-    public const SORT_ASC = 'asc';
-    public const SORT_DESC = 'desc';
     protected const SORT_DESC_INDEX = '-';
 
     protected array $select = [];
@@ -35,44 +35,48 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
     protected int $offset = self::OFFSET;
     protected int $limit = self::MAX_LIMIT;
 
-
-    public function selectByType(string $type): AbstractSearch
+    public function selectByType(string $type): self
     {
         if ($this->checkAddKey($type, self::TYPE_ACTION_TYPE, [$this->actionType])) {
             $this->actionType = $type;
         }
+
         return $this;
     }
 
-    public function selectBy(string $key): AbstractSearch
+    public function selectBy(string $key): self
     {
         if ($this->checkAddKey($key, self::TYPE_SELECT, $this->select)) {
             $this->select[] = $key;
         }
+
         return $this;
     }
 
-    public function sortBy(string $key, string $sort = self::SORT_ASC): AbstractSearch
+    public function sortBy(string $key, string $sort = self::SORT_ASC): self
     {
         if ($this->checkAddKey($key, self::TYPE_SORT, $this->sort)) {
             $this->sort[] = $sort === self::SORT_DESC ? self::SORT_DESC_INDEX . $key : $key;
         }
+
         return $this;
     }
 
-    public function filterBy(string $key, string $value): AbstractSearch
+    public function filterBy(string $key, string $value): self
     {
         if ($this->checkAddKey($key, self::TYPE_FILTER, $this->filter)) {
             $this->filter[$key] = $value;
         }
+
         return $this;
     }
 
-    public function expandBy(string $key): AbstractSearch
+    public function expandBy(string $key): self
     {
         if ($this->checkAddKey($key, self::TYPE_EXPAND, $this->expand)) {
             $this->expand[] = $key;
         }
+
         return $this;
     }
 
@@ -101,7 +105,7 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
         return $this->offset;
     }
 
-    public function setOffset(int $offset): AbstractSearch
+    public function setOffset(int $offset): self
     {
         $this->offset = $offset;
         return $this;
@@ -112,15 +116,10 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
         return $this->limit;
     }
 
-    public function setLimit(int $limit): AbstractSearch
+    public function setLimit(int $limit): self
     {
         $this->limit = $limit;
         return $this;
-    }
-
-    public function __toString(): string
-    {
-        return (string)json_encode($this);
     }
 
     #[ArrayShape(
@@ -135,19 +134,19 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
     ]
     public function toArray(): array
     {
-        return array_filter(
+        return \array_filter(
             [
             self::TYPE_SELECT => $this->select,
             self::TYPE_EXPAND => $this->expand,
             self::TYPE_SORT => $this->sort,
             self::TYPE_ACTION_TYPE => $this->actionType,
             self::TYPE_LIMIT => $this->limit,
-            self::TYPE_OFFSET => $this->offset
+            self::TYPE_OFFSET => $this->offset,
             ],
-            fn($item) => (
-                (is_array($item) && count($item) > 0)
-                || (is_string($item) && ($item !== ''))
-                || (!is_string($item) && !is_array($item) && !is_null($item))
+            static fn ($item) => (
+                (\is_array($item) && \count($item) > 0)
+                || (\is_string($item) && ($item !== ''))
+                || (!\is_string($item) && !\is_array($item) && !\is_null($item))
             )
         );
     }
@@ -170,6 +169,7 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
     public function getAsQuery(): array
     {
         $queryArr = [];
+
         foreach ($this->toArray() as $type => $data) {
                 $queryArr[$type] = match ($type) {
                     self::TYPE_SELECT, self::TYPE_SORT, self::TYPE_EXPAND => \implode(',', $data),
@@ -177,7 +177,7 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
                 };
         }
 
-        return array_merge($queryArr, $this->filter);
+        return \array_merge($queryArr, $this->filter);
     }
 
     protected function getAllowedProperties(string $type): array
@@ -188,7 +188,7 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
             self::TYPE_EXPAND => $this->getExpandAllowedValues(),
             self::TYPE_SORT => $this->getSortAllowedValues(),
             self::TYPE_ACTION_TYPE => $this->getActionTypeAllowedValues(),
-            default => throw new AllowedTypeException(sprintf('This type [%s] is not supported.', $type))
+            default => throw new AllowedTypeException(\sprintf('This type [%s] is not supported.', $type))
         };
     }
 
@@ -222,8 +222,13 @@ abstract class AbstractSearch implements JsonSerializable, Stringable
         $key = u($key)->lower()->toString();
         AllowedTypeException::check($key, $this->getAllowedProperties($type));
         return match ($type) {
-            self::TYPE_FILTER => !array_key_exists($key, $listKeys),
-            default => !in_array($key, $listKeys),
+            self::TYPE_FILTER => !\array_key_exists($key, $listKeys),
+            default => !\in_array($key, $listKeys),
         };
+    }
+
+    public function __toString(): string
+    {
+        return (string)\json_encode($this);
     }
 }

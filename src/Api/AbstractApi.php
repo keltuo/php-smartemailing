@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api;
 
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use JetBrains\PhpStorm\Pure;
@@ -12,7 +11,6 @@ use SmartEmailing\Api\Model\Response\BaseResponse;
 use SmartEmailing\Exception\RequestException;
 use SmartEmailing\SmartEmailing;
 use SmartEmailing\Util\Helpers;
-use function rawurlencode;
 
 abstract class AbstractApi
 {
@@ -22,8 +20,9 @@ abstract class AbstractApi
     public const METHOD_PATCH = 'PATCH';
     public const METHOD_DELETE = 'DELETE';
 
-    protected int $chunkLimit = 500;
     protected const URI_PREFIX = '/api/v3/';
+
+    protected int $chunkLimit = 500;
 
     private Client $client;
 
@@ -81,12 +80,12 @@ abstract class AbstractApi
             $response = new BaseResponse($exception->getResponse());
             $message = $exception->getMessage();
 
-            if ($message === 'Client error' && is_string($response->getMessage())) {
+            if ($message === 'Client error' && \is_string($response->getMessage())) {
                 $message = "Client error: {$response->getMessage()}";
             }
 
             throw new RequestException(
-                $response, $exception->getRequest(), $message, $exception->getCode(), $exception
+                $response, $exception->getRequest(), $message, \intval($exception->getCode()), $exception
             );
         }
     }
@@ -96,15 +95,14 @@ abstract class AbstractApi
         return Helpers::replaceUrlParameters($uri, $parameters);
     }
 
-    #[Pure]
-    protected static function encodePath(string $uri): string
-    {
-        return rawurlencode($uri);
-    }
-
     protected function getClient(): Client
     {
         return $this->client;
     }
 
+    #[Pure]
+    protected static function encodePath(string $uri): string
+    {
+        return \rawurlencode($uri);
+    }
 }

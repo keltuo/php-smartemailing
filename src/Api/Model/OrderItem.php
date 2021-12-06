@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use SmartEmailing\Api\Model\Bag\AbstractBag;
@@ -20,19 +19,12 @@ class OrderItem extends AbstractModel implements ModelInterface
     protected ?string $imageUrl = null;
     protected AttributeBag $attributeBag;
 
-    /**
-     * @param string $id
-     * @param string $name
-     * @param Price  $price
-     * @param int    $quantity
-     * @param string $url
-     */
     public function __construct(
         string $id,
         string $name,
         Price $price,
         int $quantity,
-        string $url
+        string $url,
     ) {
         $this->setId($id);
         $this->setName($name);
@@ -145,12 +137,12 @@ class OrderItem extends AbstractModel implements ModelInterface
         'quantity' => "int",
         'url' => "string",
         'image_url' => "string",
-        'attributes' => "\SmartEmailing\Api\Model\Bag\AttributesBag"
+        'attributes' => "\SmartEmailing\Api\Model\Bag\AttributesBag",
         ]
     )]
     public function toArray(): array
     {
-        return array_filter(
+        return \array_filter(
             [
             'id' => $this->getId(),
             'name' => $this->getName(),
@@ -160,10 +152,10 @@ class OrderItem extends AbstractModel implements ModelInterface
             'url' => $this->getUrl(),
             'image_url' => $this->getImageUrl(),
             'attributes' => $this->getAttributeBag(),
-            ], fn ($item) => (
-            (!is_object($item) && !empty($item))
-            || (is_object($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
-            || (is_object($item) && is_a($item, Price::class))
+            ], static fn ($item) => (
+            (!\is_object($item) && !empty($item))
+            || (\is_object($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
+            || (\is_object($item) && \is_a($item, Price::class))
             )
         );
     }

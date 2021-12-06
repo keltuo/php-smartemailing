@@ -19,7 +19,7 @@ class SilencePeriod extends Period
             self::DAYS,
             self::WEEKS,
             self::MONTHS,
-            self::YEARS
+            self::YEARS,
         ];
     }
 }

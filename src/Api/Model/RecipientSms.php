@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 
 class RecipientSms extends Recipient
@@ -16,16 +15,12 @@ class RecipientSms extends Recipient
      */
     protected string $cellphone;
 
-    /**
-     * @param string $emailAddress
-     * @param string $cellphone
-     */
     public function __construct(string $emailAddress, string $cellphone)
     {
         $this->setCellphone($cellphone);
+
         parent::__construct($emailAddress);
     }
-
 
     public function getCellphone(): string
     {
@@ -41,12 +36,12 @@ class RecipientSms extends Recipient
     #[ArrayShape(
         [
         'emailaddress' => "string",
-        'cellphone' => "string"
+        'cellphone' => "string",
         ]
     )]
     public function toArray(): array
     {
-        return array_merge(
+        return \array_merge(
             [
             'cellphone' => $this->getCellphone(),
             ], parent::toArray()

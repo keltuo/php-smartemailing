@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use SmartEmailing\Exception\AllowedTypeException;
 
@@ -21,31 +20,28 @@ class Purpose extends AbstractModel
      * Allowed values: "consent", "contract", "legal-obligation", "legitimate-interest", "vital-interest", "public-task"
      */
     protected string $lawfulBasis;
+
     /**
      *  Internal purpose name. Your contacts will not see it.
      */
     protected string $name;
+
     /**
      * Purpose duration
      */
     protected Period $duration;
+
     /**
      * Internal purpose notes. Your contacts will not see it.
      * Default value: null
      */
     protected ?string $notes;
 
-    /**
-     * @param string      $lawfulBasis
-     * @param string      $name
-     * @param Period      $duration
-     * @param string|null $notes
-     */
     public function __construct(
         string $lawfulBasis,
         string $name,
         Period $duration,
-        ?string $notes = null
+        ?string $notes = null,
     ) {
         $this->setLawfulBasis($lawfulBasis);
         $this->setName($name);
@@ -68,7 +64,7 @@ class Purpose extends AbstractModel
                 self::LAWFUL_LEGAL_OBLIGATION,
                 self::LAWFUL_LEGITIMATE_INTEREST,
                 self::LAWFUL_VITAL_INTEREST,
-                self::LAWFUL_PUBLIC_TASK
+                self::LAWFUL_PUBLIC_TASK,
             ]
         );
         $this->lawfulBasis = $lawfulBasis;
@@ -113,7 +109,7 @@ class Purpose extends AbstractModel
         'lawful_basis' => "string",
         'name' => "string",
         'duration' => "\SmartEmailing\Api\Model\Period",
-        'notes' => "null|string"
+        'notes' => "null|string",
         ]
     )]
     public function toArray(): array

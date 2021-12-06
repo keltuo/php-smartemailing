@@ -3,14 +3,13 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api;
 
-
 use SmartEmailing\Api\Model\ChangeEmailAddress;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 use SmartEmailing\Api\Model\Search\Contacts as SearchContact;
 use SmartEmailing\Api\Model\Search\SingleContact as SearchSingleContact;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts
  * @package SmartEmailing\Api
  */
 class Contacts extends AbstractApi
@@ -33,7 +32,7 @@ class Contacts extends AbstractApi
                 $this->replaceUrlParameters(
                     'contacts/forget/:id',
                     [
-                    'id' => $idContact
+                    'id' => $idContact,
                     ]
                 )
             )
@@ -43,24 +42,24 @@ class Contacts extends AbstractApi
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts-Get_Contacts_with_lists_and_customfield_values
      */
-    public function getList(SearchContact $search = null): Response
+    public function getList(?SearchContact $search = null): Response
     {
-        $search = $search ?? new SearchContact();
+        $search ??= new SearchContact();
         return new Response($this->get('contacts', $search->getAsQuery()));
     }
 
     /**
      * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Contacts-Get_Single_contact_with_lists_and_customfield_values
      */
-    public function getSingle(int $idContact, SearchSingleContact $search = null): Response
+    public function getSingle(int $idContact, ?SearchSingleContact $search = null): Response
     {
-        $search = $search ?? new SearchSingleContact();
+        $search ??= new SearchSingleContact();
         return new Response(
             $this->get(
                 $this->replaceUrlParameters(
                     'contacts/:id',
                     [
-                    'id' => $idContact
+                    'id' => $idContact,
                     ]
                 ),
                 $search->getAsQuery()

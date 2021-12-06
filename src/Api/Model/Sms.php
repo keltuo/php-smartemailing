@@ -3,18 +3,17 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model;
 
-
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use SmartEmailing\Api\Model\Bag\TaskBag;
 
 class Sms extends AbstractModel implements ModelInterface
 {
-
     /**
      * Tag used for SMS grouping
      */
     protected string $tag;
+
     /**
      * Id of SMS to send.
      * All dynamic fields in SMS will be customized per contact.
@@ -27,16 +26,11 @@ class Sms extends AbstractModel implements ModelInterface
 
     protected TaskBag $taskBag;
 
-    /**
-     * @param string       $tag
-     * @param int          $smsId
-     * @param TaskBag|null $taskBag
-     */
     public function __construct(string $tag, int $smsId, ?TaskBag $taskBag = null)
     {
         $this->setTag($tag);
         $this->setSmsId($smsId);
-        $this->setTaskBag(is_null($taskBag) ? new TaskBag() : $taskBag);
+        $this->setTaskBag(\is_null($taskBag) ? new TaskBag() : $taskBag);
     }
 
     #[Pure]
@@ -82,7 +76,7 @@ class Sms extends AbstractModel implements ModelInterface
         [
         'tag' => "string",
         'sms_id' => "int",
-        'tasks' => "\SmartEmailing\Api\Model\Bag\TaskBag"
+        'tasks' => "\SmartEmailing\Api\Model\Bag\TaskBag",
         ]
     )]
     public function toArray(): array
@@ -90,7 +84,7 @@ class Sms extends AbstractModel implements ModelInterface
         return [
             'tag' => $this->getTag(),
             'sms_id' => $this->getSmsId(),
-            'tasks' => $this->getTaskBag()
+            'tasks' => $this->getTaskBag(),
         ];
     }
 }

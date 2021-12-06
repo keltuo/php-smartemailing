@@ -29,14 +29,17 @@ class Order extends AbstractModel implements ModelInterface
     protected string $eshopName;
 
     protected string $eshopCode;
+
     /**
      * Format YYYY-MM-DD HH:MM:SS
      */
     protected ?string $createdAt = null;
+
     /**
      * Format YYYY-MM-DD HH:MM:SS
      */
     protected ?string $paidAt = null;
+
     /**
      * Status of order (defaults to placed when not specified).
      * Available values are placed, processing, shipped, cancelled, unknown.
@@ -49,15 +52,10 @@ class Order extends AbstractModel implements ModelInterface
 
     protected FeedItemBag $feedItemBag;
 
-    /**
-     * @param string $emailAddress
-     * @param string $eshopName
-     * @param string $eshopCode
-     */
     public function __construct(
         string $emailAddress,
         string $eshopName,
-        string $eshopCode
+        string $eshopCode,
     ) {
         $this->setEmailAddress($emailAddress);
         $this->setEshopName($eshopName);
@@ -130,7 +128,7 @@ class Order extends AbstractModel implements ModelInterface
             self::STATUS_CANCELED,
             self::STATUS_PROCESSING,
             self::STATUS_SHIPPED,
-            self::STATUS_UNKNOWN
+            self::STATUS_UNKNOWN,
             ]
         );
         $this->status = $status;
@@ -192,11 +190,11 @@ class Order extends AbstractModel implements ModelInterface
         'created_at' => "null|string",
         'attributes' => "mixed",
         'items' => "mixed",
-        'item_feeds' => "mixed"
+        'item_feeds' => "mixed",
         ]
     )] public function toArray(): array
     {
-        return array_filter(
+        return \array_filter(
             [
             'emailaddress' => $this->getEmailAddress(),
             'eshop_name' => $this->getEshopName(),
@@ -207,9 +205,9 @@ class Order extends AbstractModel implements ModelInterface
             'attributes' => $this->getAttributeBag(),
             'items' => $this->getOrderItemBag(),
             'item_feeds' => $this->getFeedItemBag(),
-            ], fn($item) => (
-            (!is_object($item) && !empty($item))
-            || (is_object($item) && is_a($item, AbstractBag::class) && !$item->isEmpty())
+            ], static fn ($item) => (
+            (!\is_object($item) && !empty($item))
+            || (\is_object($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
             )
         );
     }

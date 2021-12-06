@@ -8,7 +8,7 @@ use SmartEmailing\Api\Model\Order;
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-E_shops
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-E_shops
  * @package SmartEmailing\Api
  */
 class Eshops extends AbstractApi
@@ -29,12 +29,15 @@ class Eshops extends AbstractApi
         if (!$orderBag->isEmpty()) {
             $originalOrders = $orderBag->getItems();
             $lastResponse = null;
-            foreach (array_chunk($originalOrders, $this->chunkLimit) as $orders) {
+
+            foreach (\array_chunk($originalOrders, $this->chunkLimit) as $orders) {
                 $chunkOrderBag = (new OrderBag())->setItems($orders);
                 $lastResponse = new Response($this->post('orders-bulk', $chunkOrderBag->toArray()));
             }
+
             return $lastResponse;
         }
+
         return null;
     }
 }

@@ -17,12 +17,13 @@ class TaskBag extends AbstractBag
     public function create(
         Recipient $recipient,
         ReplaceBag $replaceBag,
-        AttachmentBag $attachmentsBag = null,
-        array $templateVariables = array()
+        ?AttachmentBag $attachmentsBag = null,
+        array $templateVariables = [],
     ): Task {
-        if (is_null($attachmentsBag)) {
+        if (\is_null($attachmentsBag)) {
             $attachmentsBag = new AttachmentBag();
         }
+
         $model = new Task($recipient, $replaceBag, $attachmentsBag, $templateVariables);
         $this->add($model);
         return $model;

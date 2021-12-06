@@ -29,11 +29,10 @@
         "symfony/string": "5.1.*"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.12.49",
+        "phpstan/phpstan": "^1.2.0",
         "phpunit/phpunit": "^9.5",
         "jetbrains/phpstorm-attributes": "^1.0",
         "squizlabs/php_codesniffer": "*",
-        "vimeo/psalm": "*",
-        "phpmd/phpmd" : "@stable"
+        "slevomat/coding-standard": "^7.0"
     }
 }

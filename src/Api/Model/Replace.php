@@ -13,15 +13,12 @@ class Replace extends AbstractModel implements ModelInterface
      * Eg: key = product_12 will cause all occurrences of {{replace_product_12}} string to be replaced.
      */
     protected string $key;
+
     /**
      * Dynamic tag content which will be used to replace dynamic tag.
      */
     protected string $content;
 
-    /**
-     * @param string $key
-     * @param string $content
-     */
     public function __construct(string $key, string $content)
     {
         $this->setKey($key);
@@ -59,7 +56,7 @@ class Replace extends AbstractModel implements ModelInterface
     #[ArrayShape(
         [
         'key' => "string",
-        'content' => "string"
+        'content' => "string",
         ]
     )]
     public function toArray(): array

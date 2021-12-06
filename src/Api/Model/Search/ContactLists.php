@@ -26,7 +26,7 @@ class ContactLists extends AbstractSearch
             self::SENDER_EMAIL,
             self::REPLY_TO,
             self::SIGNATURE,
-            self::SEGMENT_ID
+            self::SEGMENT_ID,
         ];
     }
 }

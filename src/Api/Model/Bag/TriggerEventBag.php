@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api\Model\Bag;
 
-
 use SmartEmailing\Api\Model\Event;
 
 class TriggerEventBag extends AbstractBag

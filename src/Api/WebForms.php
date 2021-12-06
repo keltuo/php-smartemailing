@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace SmartEmailing\Api;
 
-
 use SmartEmailing\Api\Model\Response\BaseResponse as Response;
 
 /**
- * @see     https://app.smartemailing.cz/docs/api/v3/index.html#api-Web_Forms
+ * @see https://app.smartemailing.cz/docs/api/v3/index.html#api-Web_Forms
  * @package SmartEmailing\Api
  */
 class WebForms extends AbstractApi
@@ -30,7 +29,7 @@ class WebForms extends AbstractApi
                 $this->replaceUrlParameters(
                     'web-form-structure/:id',
                     [
-                    'id' => $idWebForm
+                    'id' => $idWebForm,
                     ]
                 )
             )

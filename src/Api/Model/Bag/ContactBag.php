@@ -14,7 +14,7 @@ class ContactBag extends AbstractBag
     }
 
     public function create(
-        string $emailAddress
+        string $emailAddress,
     ): ContactDetail {
         $model = (new ContactDetail($emailAddress));
         $this->add($model);

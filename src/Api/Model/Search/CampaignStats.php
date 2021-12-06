@@ -34,7 +34,7 @@ class CampaignStats extends AbstractSearch
             self::UNSUBSCRIBE,
             self::BOUNCED,
             self::TIME,
-            self::EMAIL_ADDRESS
+            self::EMAIL_ADDRESS,
         ];
     }
 
@@ -50,7 +50,7 @@ class CampaignStats extends AbstractSearch
             self::CAMPAIGN_AUTORESPONDER,
             self::CAMPAIGN_CUSTOM_EMAIL,
             self::CAMPAIGN_TRIGGER_ACTION,
-            self::CAMPAIGN_TRANSACTIONAL_EMAIL
+            self::CAMPAIGN_TRANSACTIONAL_EMAIL,
         ];
     }
 

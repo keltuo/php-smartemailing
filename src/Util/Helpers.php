@@ -16,17 +16,19 @@ class Helpers
 
     public static function validateEmail(string $email): bool
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidArgumentException(sprintf('Email [%s] is not valid!', $email));
+        if (!\filter_var($email, \FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidArgumentException(\sprintf('Email [%s] is not valid!', $email));
         }
+
         return true;
     }
 
     public static function replaceUrlParameters(string $uri, array $parameters): string
     {
         foreach ($parameters as $key => $value) {
-            $uri = str_replace((string)u((string)$key)->prepend(':')->lower(), (string)$value, $uri);
+            $uri = \str_replace((string)u((string)$key)->prepend(':')->lower(), (string)$value, $uri);
         }
+
         return $uri;
     }
 }
