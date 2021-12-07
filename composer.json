@@ -1,7 +1,7 @@
 {
     "name": "keltuo/php-smartemailing",
     "description": "Smart Emailing API v3 client for PHP",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "type": "library",
     "license": "MIT",
     "keywords": ["smart emailing", "smart", "emailing", "api", "php", "client"],
