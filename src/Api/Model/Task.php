@@ -114,6 +114,7 @@ class Task extends AbstractModel implements ModelInterface
             'attachments' => $this->getAttachmentsBag(),
             ], static fn ($item) => (
                 (!\is_array($item) && \is_a($item, AttachmentBag::class))
+                || (!\is_array($item) && \is_a($item, ReplaceBag::class))
                 || (!\is_array($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
                 || (!\is_array($item) && \is_a($item, Recipient::class))
                 || (\is_array($item) && \count($item)>0)
