@@ -8,12 +8,12 @@ use SmartEmailing\Api\Model\Bag\TaskBag;
 class TransactionalEmail extends AbstractModel
 {
     /**
-     * Sender's credentials for this request 
+     * Sender's credentials for this request
      */
     protected SenderCredentials $senderCredentials;
 
     /**
-     * Tag used for email grouping 
+     * Tag used for email grouping
      */
     protected string $tag;
 
@@ -106,7 +106,8 @@ class TransactionalEmail extends AbstractModel
             'message_contents' => $this->getMessageContent(),
             'tasks' => $this->getTaskBag(),
             'sender_credentials' => $this->getSenderCredentials(),
-            ], static fn ($item) => !\is_null($item)
+            ],
+            static fn ($item) => !\is_null($item)
         );
     }
 }

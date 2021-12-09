@@ -17,8 +17,7 @@ class RequestException extends \RuntimeException
         string $message = '',
         int $code = 0,
         ?\Throwable $exception = null,
-    )
-    {
+    ) {
         $this->response = $response;
         $this->request = $request;
 

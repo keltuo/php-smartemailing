@@ -13,7 +13,7 @@ class DoubleOptInSettings extends AbstractModel
     public const SEND_MODE_NEW_IN_DATABASE = 'new-in-database';
 
     /**
-     * Double-opt-in e-mail settings 
+     * Double-opt-in e-mail settings
      */
     protected Campaign $campaign;
 

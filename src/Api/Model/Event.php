@@ -10,7 +10,7 @@ use SmartEmailing\Util\Helpers;
 class Event extends AbstractModel implements ModelInterface
 {
     /**
-     * Email address to trigger the event for, will be created if necessary. 
+     * Email address to trigger the event for, will be created if necessary.
      */
     protected string $emailAddress;
 
@@ -20,7 +20,7 @@ class Event extends AbstractModel implements ModelInterface
     protected string $name;
 
     /**
-     * Event payload. This payload is available throughout the entire contact's walkthrough. 
+     * Event payload. This payload is available throughout the entire contact's walkthrough.
      */
     protected array $payload = [];
 

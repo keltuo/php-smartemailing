@@ -113,7 +113,8 @@ class ContactLists extends AbstractApi
                     [
                     'id' => $idContactList,
                     ]
-                ), $contactList->toArray()
+                ),
+                $contactList->toArray()
             )
         );
     }

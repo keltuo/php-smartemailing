@@ -8,7 +8,7 @@ use JetBrains\PhpStorm\ArrayShape;
 class MessageContent extends AbstractModel
 {
     /**
-     * Subject of email 
+     * Subject of email
      */
     protected string $subject;
 

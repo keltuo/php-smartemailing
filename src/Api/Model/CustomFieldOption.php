@@ -9,7 +9,7 @@ use SmartEmailing\Exception\RequiredFieldException;
 class CustomFieldOption extends AbstractModel
 {
     /**
-     * Parent customfield ID 
+     * Parent customfield ID
      */
     protected int $customFieldId;
 

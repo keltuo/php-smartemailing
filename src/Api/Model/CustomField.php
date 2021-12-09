@@ -17,7 +17,7 @@ class CustomField extends AbstractModel
     public const SELECT = "select";
 
     /**
-     * Customfield name 
+     * Customfield name
      */
     protected string $name;
 

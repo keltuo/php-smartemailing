@@ -44,7 +44,8 @@ class RecipientSms extends Recipient
         return \array_merge(
             [
             'cellphone' => $this->getCellphone(),
-            ], parent::toArray()
+            ],
+            parent::toArray()
         );
     }
 }

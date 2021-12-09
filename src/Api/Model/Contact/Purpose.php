@@ -94,7 +94,8 @@ class Purpose extends AbstractModel implements ModelInterface
             'id' => $this->getId(),
             'valid_from' => $this->getValidFrom(),
             'valid_to' => $this->getValidTo(),
-            ], static fn ($item) => !\is_null($item)
+            ],
+            static fn ($item) => !\is_null($item)
         );
     }
 }

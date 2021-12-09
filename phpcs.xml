@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="smart-emailing-client">
-    <config name="installed_paths" value="/var/www/vendor/slevomat/coding-standard"/>
-
+    <config name="installed_paths" value="./vendor/slevomat/coding-standard"/>
     <arg name="extensions" value="php"/>
-
     <file>src/</file>
-
     <arg name="basepath" value="."/>
     <arg name="colors"/>
     <arg name="parallel" value="75"/>
     <arg value="np"/>
-
-    <rule ref="/var/www/vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+    <arg name="tab-width" value="0"/>
+    <rule ref="PSR2"/>
+    <rule ref="./vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
         <exclude name="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
         <exclude name="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature"/>
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming"/>
@@ -51,7 +48,6 @@
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
         <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
         <exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator.RequiredNumericLiteralSeparator"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes"/>
         <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification"/>
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingTraversableTypeHintSpecification"/>
@@ -129,6 +125,12 @@
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
         <properties>
             <property name="ignoreUnusedValuesWhenOnlyKeysAreUsedInForeach" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="linesCountBeforeDeclare" value="0"/>
+            <property name="spacesCountAroundEqualsSign" value="0"/>
         </properties>
     </rule>
 </ruleset>

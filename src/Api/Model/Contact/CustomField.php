@@ -97,7 +97,8 @@ class CustomField extends AbstractModel implements ModelInterface
             'id' => $this->getId(),
             'options' => $this->getOptions(),
             'value' => $this->getValue(),
-            ], static fn ($item) => !empty($item)
+            ],
+            static fn ($item) => !empty($item)
         );
     }
 }

@@ -171,7 +171,8 @@ class Settings extends AbstractModel
             'preserve_unsubscribed' => $this->isPreserveUnSubscribed(),
             'skip_invalid_emails' => $this->isSkipInvalidEmails(),
             'double_opt_in_settings' => $this->getDoubleOptInSettings(),
-            ], static fn ($item) => !\is_null($item)
+            ],
+            static fn ($item) => !\is_null($item)
         );
     }
 }

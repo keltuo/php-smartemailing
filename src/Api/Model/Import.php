@@ -52,7 +52,8 @@ class Import extends AbstractModel
             [
             'settings' => $this->getSettings(),
             'data' => $this->getContactBag(),
-            ], static fn ($item) => !\is_null($item)
+            ],
+            static fn ($item) => !\is_null($item)
         );
     }
 }

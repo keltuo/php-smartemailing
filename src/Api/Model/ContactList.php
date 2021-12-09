@@ -9,7 +9,7 @@ use SmartEmailing\Util\Helpers;
 class ContactList extends AbstractModel
 {
     /**
-     * Contactlist name that will not be displayed to public 
+     * Contactlist name that will not be displayed to public
      */
     protected ?string $name;
 
@@ -19,17 +19,17 @@ class ContactList extends AbstractModel
     protected ?string $publicName;
 
     /**
-     * Name of contact list owner, will be used in your campaigns 
+     * Name of contact list owner, will be used in your campaigns
      */
     protected ?string $senderName;
 
     /**
-     * E-mail address of list owner, will be used in your campaigns 
+     * E-mail address of list owner, will be used in your campaigns
      */
     protected ?string $senderEmail;
 
     /**
-     * Reply-to e-mail address of list owner, will be used in your campaigns 
+     * Reply-to e-mail address of list owner, will be used in your campaigns
      */
     protected ?string $replyTo;
 

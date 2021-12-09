@@ -107,7 +107,8 @@ class Campaign extends AbstractModel
             'confirmation_thank_you_page_url' => $this->getConfirmationThankYouPageUrl(),
             'valid_to' => $this->getValidTo(),
             'replace' => $this->getReplaceBag(),
-            ], static fn ($item) => !\is_null($item)
+            ],
+            static fn ($item) => !\is_null($item)
         );
     }
 }

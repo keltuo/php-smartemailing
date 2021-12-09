@@ -9,12 +9,12 @@ use SmartEmailing\Api\Model\Bag\ReplaceBag;
 class EmailTemplate extends AbstractModel
 {
     /**
-     * E-mail or E-mail template ID 
+     * E-mail or E-mail template ID
      */
     protected int $emailId;
 
     /**
-     * Dynamic contents to be replaced 
+     * Dynamic contents to be replaced
      */
     protected ReplaceBag $replaceBag;
 

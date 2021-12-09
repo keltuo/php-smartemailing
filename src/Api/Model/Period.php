@@ -23,7 +23,7 @@ class Period extends AbstractModel
     protected string $unit;
 
     /**
-     * Period value, must be integer 
+     * Period value, must be integer
      */
     protected int $value;
 

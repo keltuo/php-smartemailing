@@ -85,7 +85,11 @@ abstract class AbstractApi
             }
 
             throw new RequestException(
-                $response, $exception->getRequest(), $message, \intval($exception->getCode()), $exception
+                $response,
+                $exception->getRequest(),
+                $message,
+                \intval($exception->getCode()),
+                $exception
             );
         }
     }

@@ -152,7 +152,8 @@ class OrderItem extends AbstractModel implements ModelInterface
             'url' => $this->getUrl(),
             'image_url' => $this->getImageUrl(),
             'attributes' => $this->getAttributeBag(),
-            ], static fn ($item) => (
+            ],
+            static fn ($item) => (
             (!\is_object($item) && !empty($item))
             || (\is_object($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
             || (\is_object($item) && \is_a($item, Price::class))

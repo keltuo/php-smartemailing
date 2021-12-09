@@ -25,13 +25,13 @@ class LoginResponse extends BaseResponse
     }
 
     #[ArrayShape(
-	    [
-		    'statusCode' => "int",
-		    'status' => "string",
-		    'meta' => "null|object",
-		    'data' => "array",
-		    'message' => "string",
-	    ]
+        [
+            'statusCode' => "int",
+            'status' => "string",
+            'meta' => "null|object",
+            'data' => "array",
+            'message' => "string",
+        ]
     )] public function toArray(): array
     {
         return \array_merge(parent::toArray(), [

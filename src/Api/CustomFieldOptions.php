@@ -79,7 +79,8 @@ class CustomFieldOptions extends AbstractApi
                     [
                     'id' => $idCustomFieldOption,
                     ]
-                ), $customFieldOption->toArray()
+                ),
+                $customFieldOption->toArray()
             )
         );
     }

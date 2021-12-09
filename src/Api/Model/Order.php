@@ -123,7 +123,8 @@ class Order extends AbstractModel implements ModelInterface
     public function setStatus(string $status): Order
     {
         AllowedTypeException::check(
-            $status, [
+            $status,
+            [
             self::STATUS_PLACED,
             self::STATUS_CANCELED,
             self::STATUS_PROCESSING,
@@ -205,7 +206,8 @@ class Order extends AbstractModel implements ModelInterface
             'attributes' => $this->getAttributeBag(),
             'items' => $this->getOrderItemBag(),
             'item_feeds' => $this->getFeedItemBag(),
-            ], static fn ($item) => (
+            ],
+            static fn ($item) => (
             (!\is_object($item) && !empty($item))
             || (\is_object($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
             )

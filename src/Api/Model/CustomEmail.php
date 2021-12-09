@@ -9,12 +9,12 @@ use SmartEmailing\Api\Model\Bag\TaskBag;
 class CustomEmail extends AbstractModel
 {
     /**
-     * Sender's credentials for this request 
+     * Sender's credentials for this request
      */
     protected SenderCredentials $senderCredentials;
 
     /**
-     * Tag used for email grouping 
+     * Tag used for email grouping
      */
     protected string $tag;
 

@@ -335,7 +335,8 @@ class ContactDetail extends AbstractModel implements ModelInterface
     public function setGender(string $gender): ContactDetail
     {
         AllowedTypeException::check(
-            $gender, [
+            $gender,
+            [
             'M', 'F', null,
             ]
         );
@@ -399,7 +400,8 @@ class ContactDetail extends AbstractModel implements ModelInterface
             'contactlists' => $this->getContactListBag(),
             'customfields' => $this->getCustomFieldBag(),
             'purposes' => $this->getPurposeBag(),
-            ], static fn ($item) => (
+            ],
+            static fn ($item) => (
             (!\is_object($item) && !empty($item))
             || (\is_object($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
             )

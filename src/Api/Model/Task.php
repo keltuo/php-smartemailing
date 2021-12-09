@@ -112,7 +112,8 @@ class Task extends AbstractModel implements ModelInterface
             'replace' => $this->getReplaceBag(),
             'template_variables' => $this->getTemplateVariables(),
             'attachments' => $this->getAttachmentsBag(),
-            ], static fn ($item) => (
+            ],
+            static fn ($item) => (
                 (!\is_array($item) && \is_a($item, AttachmentBag::class))
                 || (!\is_array($item) && \is_a($item, ReplaceBag::class))
                 || (!\is_array($item) && \is_a($item, AbstractBag::class) && !$item->isEmpty())
